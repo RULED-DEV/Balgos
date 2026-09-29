@@ -36,14 +36,19 @@ public class navigator : MonoBehaviour
         ex.pos = (Vector2)transform.position;
         posList.Add(ex);
         while(!goal && MaxLoop < 30){
+            MaxLoop++;
             // produces set of 5 positions at walls
             List<NavNode> prongArr = generatePositions();
             // culls positions and finds most likely to navigate toward player
             // edits position to be in line with player/toward center of room
             NavNode node = cullNode(prongArr);
             posList.Add(node);
+            Debug.Log(node.pos);
+            Debug.Log(node.priority);
+            Debug.Log(node.propDir);
             // checks list so far, removes redundant moves, checks if goal is reached
             goal = checkList();
+            if(MaxLoop > 4){goal = true;}
         }
     }
 
@@ -95,13 +100,55 @@ public class navigator : MonoBehaviour
         return ch;
     }
 
-    public NavNode cullNode(NavNode n){
+    int2 denyDir;
+    // last direction chosen to navigate toward
 
+    public NavNode cullNode(List<NavNode> n){
+        // assigns priorities to each node
+        n = priorityAssignment(n);
+
+        NavNode selected = n[0];
+        foreach(NavNode N in n){
+            if(N.priority > selected.priority){
+                selected = N;
+            }
+        }
+        denyDir = -selected.propDir;
+        return selected;
     }
+
+    List<NavNode> priorityAssignment(List<NavNode> n){
+        float longestLength = 0;
+        int posLongest = 0;
+        
+        for(int i = 1; i < n.Count; i++){
+            NavNode N = n[i];
+            if(N.propDir.x == desDir.x || N.propDir.y == desDir.y){
+                N.priority ++;
+                // in direction of player, increases priority
+            }
+            if(Vector2.Distance(N.pos,posList[posList.Count-1].pos) > longestLength){
+                posLongest = i;
+                longestLength = Vector2.Distance(N.pos,posList[posList.Count-1].pos);
+                // the node that is furthest from prior valid node is awarded additional priority.
+            }
+            if(N.propDir.x == denyDir.x && N.propDir.y == denyDir.y){
+                N.priority = -5;
+            }
+            n[i] = N;
+        }
+        NavNode Ne = n[posLongest];
+        Ne.priority += 2;
+        n[posLongest] = Ne;
+        return n;
+    }
+
+    int2 desDir;
+    // direction to player
 
     public List<NavNode> generatePositions(){
         // returns 1 new position every time called
-        int2 desDir = new int2(-1,-1);
+        desDir = new int2(-1,-1);
         if(transform.position.x < tarPos.position.x){
             desDir.x = 1;
         }
@@ -109,10 +156,11 @@ public class navigator : MonoBehaviour
             desDir.y = 1;
         }
         int2[] dirs = {new int2(1,0),new int2(-1,0),new int2(0,1),new int2(0,-1),desDir};
-        List<NavNode> l = new Lis<NavNode>();
+        List<NavNode> l = new List<NavNode>();
         foreach(int2 d in dirs){
             l.Add(searchProng(d));
         }
+        return l;
     }
 
     public NavNode searchProng(int2 dir){
@@ -125,7 +173,7 @@ public class navigator : MonoBehaviour
 
         int tot = Mathf.RoundToInt(mesh.grid.width/mesh.grid.spacing);
         // total width of grid in nodes
-        int searchPos = mesh.grid.pos_to_ind(transform.position);
+        int searchPos = mesh.grid.pos_to_ind(posList[posList.Count-1].pos);
         // position to start search from
 
         bool searchConclude = true;
