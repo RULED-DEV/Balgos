@@ -6,7 +6,7 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Mathematics;
 
-// stores jobs
+// stores jobs 
 
 [BurstCompile]
 public struct InitGridJob : IJobParallelFor
