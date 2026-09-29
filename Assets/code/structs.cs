@@ -30,6 +30,16 @@ public struct mat_vals{
 }
 
 [System.Serializable]
+public struct NavNode{
+    public float2 pos;
+    // position in world of node
+    public int priority;
+    // how likely is this node to be correct
+    public int2 propDir;
+    // what direction did it check in
+}
+
+[System.Serializable]
 public struct col_rank{
     // used to handle colour display by values
     public Color32 col;
