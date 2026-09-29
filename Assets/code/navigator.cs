@@ -26,19 +26,24 @@ public class navigator : MonoBehaviour
         }
     }
 
-    public List<float2> posList;
+    public List<NavNode> posList;
 
     public void Navigate(){
         bool goal = false;
         int MaxLoop = 0;
+        posList = new List<NavNode>();
+        NavNode ex = new NavNode();
+        ex.pos = (Vector2)transform.position;
+        posList.Add(ex);
         while(!goal && MaxLoop < 30){
+            // produces set of 5 positions at walls
+            List<NavNode> prongArr = generatePositions();
+            // culls positions and finds most likely to navigate toward player
+            // edits position to be in line with player/toward center of room
+            NavNode node = cullNode(prongArr);
+            posList.Add(node);
             // checks list so far, removes redundant moves, checks if goal is reached
             goal = checkList();
-            // produces set of 5 positions at walls
-
-            // culls positions and finds most likely to navigate toward player
-
-            // edits position to be in line with player/toward center of room
         }
     }
 
@@ -49,8 +54,8 @@ public class navigator : MonoBehaviour
             // does the check
             for(int i = 1; i < posList.Count; i++){
                 if(!ch){
-                    float2 PosA = posList[i];
-                    float2 PosB = posList[i-1];
+                    float2 PosA = posList[i].pos;
+                    float2 PosB = posList[i-1].pos;
                     bool checkPath = PosA.x < tarPos.position.x && PosB.x > tarPos.position.x;
                     checkPath = checkPath || (PosA.x > tarPos.position.x && PosB.x < tarPos.position.x);
                     float chVar = Mathf.Abs(PosA.y-tarPos.position.y);
@@ -67,7 +72,7 @@ public class navigator : MonoBehaviour
                     }
                     if(i > 1){
                         // from the third node onward we check for double backs
-                        float2 PosC = posList[i-2];
+                        float2 PosC = posList[i-2].pos;
                         string AtoB = "across";
                         string BtoC = "across";
                         if(Mathf.Abs(PosA.x-PosB.x) < 0.5f){AtoB = "above";}
@@ -87,14 +92,14 @@ public class navigator : MonoBehaviour
                 }
             }
         }
-        else{
-            posList.Add((Vector2)transform.position);
-            // first position should be navigator's position
-        }
         return ch;
     }
 
-    public void generatePositions(){
+    public NavNode cullNode(NavNode n){
+
+    }
+
+    public List<NavNode> generatePositions(){
         // returns 1 new position every time called
         int2 desDir = new int2(-1,-1);
         if(transform.position.x < tarPos.position.x){
@@ -104,28 +109,48 @@ public class navigator : MonoBehaviour
             desDir.y = 1;
         }
         int2[] dirs = {new int2(1,0),new int2(-1,0),new int2(0,1),new int2(0,-1),desDir};
+        List<NavNode> l = new Lis<NavNode>();
         foreach(int2 d in dirs){
-            int pos = searchProng(d);
-            Debug.Log(mesh.grid.worldPositions[pos]);
+            l.Add(searchProng(d));
         }
     }
 
-    public int searchProng(int2 dir){
+    public NavNode searchProng(int2 dir){
+        NavNode returnNode = new NavNode();
+        // makes node to be returned
+        returnNode.priority = -5;
+        // if we reach this then a node with low priority is returned (I.E wont possibly be selected)
+        returnNode.propDir = dir;
+        // assigns direction
+
         int tot = Mathf.RoundToInt(mesh.grid.width/mesh.grid.spacing);
+        // total width of grid in nodes
         int searchPos = mesh.grid.pos_to_ind(transform.position);
+        // position to start search from
+
         bool searchConclude = true;
+        // checks if loop should end
         int breakOUT = 0;
+        // counter to limit looping
+
         while(searchConclude && breakOUT < tot){
             // loop until hit wall (medium denoted by low spreadrate)
             breakOUT++;
+
             searchPos += 5*(dir.x * 1);
             searchPos += 5*(dir.y * tot);
+            // moves search position bit by bit
+
             if(mesh.grid.Nodes[searchPos].spreadRate > 3){
                 // breaks loop and adds position of colision to list
                 searchConclude = false;
-                return searchPos;
+
+                returnNode.priority = 0;
+                // sets priority to 0 if node valid
+                returnNode.pos = mesh.grid.worldPositions[searchPos];
+                // sets node pos
             }
         }
-        return -1;
+        return returnNode;
     }
 }
