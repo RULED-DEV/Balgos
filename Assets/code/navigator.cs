@@ -91,9 +91,9 @@ public class navigator : MonoBehaviour
                         // figures out relation between last three  nodes to remove double backs
                         if(AtoB == BtoC){
                             // checks if the nodes double back (I.E same direction is used twice in succession) and handles it
-                            //Debug.Log("removed double back");
-                            //posList.RemoveAt(i-1);
-                            //i--;
+                            Debug.Log("removed double back");
+                            posList.RemoveAt(i-1);
+                            i--;
                         }
                     }
                 }
