@@ -37,6 +37,7 @@ public class enemy : MonoBehaviour
         }
         else{
             mode = "idle";
+            nav.idle = true;
             // set random tarpos
             nav.Navigate();
         }
@@ -44,6 +45,7 @@ public class enemy : MonoBehaviour
 
     public void DETECTNOISE(){
         detect.activated = false;
+        nav.idle = false;
         nav.tarPos = player.transform.position;
         nav.Navigate();
         mode = "investigate";

@@ -14,6 +14,8 @@ public class navigator : MonoBehaviour
 
     public float navTargetRad;
 
+    public bool idle;
+
     void Start(){
         mesh = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0];
     }
@@ -245,7 +247,7 @@ public class navigator : MonoBehaviour
                 returnNode.pos = mesh.grid.worldPositions[searchPos];
                 // sets node pos
             }
-            if(mesh.grid.Nodes[searchPos].spreadRate == 1.1f){
+            if(mesh.grid.Nodes[searchPos].spreadRate == 1.1f && !idle){
                 // only the player has a spreadrate of 1.1f
                 searchConclude = false;
                 returnNode.priority = 5;
