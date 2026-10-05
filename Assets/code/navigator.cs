@@ -9,21 +9,13 @@ using Unity.Mathematics;
 public class navigator : MonoBehaviour
 {
     
-    public bool nav;
-    public Transform tarPos;
+    public Vector3 tarPos;
     mesh_manager mesh;
 
-    public float targetRad;
+    public float navTargetRad;
 
     void Start(){
         mesh = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0];
-    }
-
-    void Update(){
-        if(nav){
-            nav = !nav;
-            Navigate();
-        }
     }
 
     public List<NavNode> posList;
@@ -61,23 +53,23 @@ public class navigator : MonoBehaviour
                     float2 PosA = posList[i].pos;
                     float2 PosB = posList[i-1].pos;
                     // grabs positions
-                    bool checkPath = PosA.x < tarPos.position.x && PosB.x > tarPos.position.x;
-                    checkPath = checkPath || (PosA.x > tarPos.position.x && PosB.x < tarPos.position.x);
+                    bool checkPath = PosA.x < tarPos.x && PosB.x > tarPos.x;
+                    checkPath = checkPath || (PosA.x > tarPos.x && PosB.x < tarPos.x);
                     // checks if target is between nodes
-                    float chVar = Mathf.Abs(PosA.y-tarPos.position.y);
+                    float chVar = Mathf.Abs(PosA.y-tarPos.y);
                     // checks if target was passed over
                     if(Mathf.Abs(PosA.x-PosB.x) < 0.5f){
-                        checkPath = PosA.y < tarPos.position.y && PosB.y > tarPos.position.y;
-                        checkPath = checkPath || (PosA.y > tarPos.position.y && PosB.y < tarPos.position.y);
-                        chVar = Mathf.Abs(PosA.x-tarPos.position.x);
+                        checkPath = PosA.y < tarPos.y && PosB.y > tarPos.y;
+                        checkPath = checkPath || (PosA.y > tarPos.y && PosB.y < tarPos.y);
+                        chVar = Mathf.Abs(PosA.x-tarPos.x);
                         // same checks as before but for different axis
                     }
-                    bool Chdist = Vector2.Distance(PosA,(Vector2)tarPos.position) < targetRad;
+                    bool Chdist = Vector2.Distance(PosA,(Vector2)tarPos) < navTargetRad;
                     // checks distance from current node to target
 
                     // checkPath checks if the target position lies between the nodes
                     // chVar is the distance from the travel directio of the nodes and the target pos
-                    if((chVar < targetRad && checkPath) || Chdist){
+                    if((chVar < navTargetRad && checkPath) || Chdist){
                         Debug.Log("terminal position found");
                         ch = true;
                     }
@@ -114,21 +106,21 @@ public class navigator : MonoBehaviour
         // moves pos away from the wall
 
         NavNode prior = posList[posList.Count-1];
-        bool check = n.pos.x < tarPos.position.x && prior.pos.x > tarPos.position.x;
-        check = check || n.pos.x > tarPos.position.x && prior.pos.x < tarPos.position.x;
+        bool check = n.pos.x < tarPos.x && prior.pos.x > tarPos.x;
+        check = check || n.pos.x > tarPos.x && prior.pos.x < tarPos.x;
         int2 dir = new int2(0,-1);
-        if(n.pos.y < tarPos.position.y){
+        if(n.pos.y < tarPos.y){
             // its above us
             dir = new int2(0,1);
         }
-        float2 pos = new float2(tarPos.position.x,n.pos.y);
+        float2 pos = new float2(tarPos.x,n.pos.y);
         if(n.propDir.x == 0){
             // check Y axis
-            check = n.pos.y < tarPos.position.y && prior.pos.y > tarPos.position.y;
-            check = check || n.pos.y > tarPos.position.y && prior.pos.y < tarPos.position.y;
-            pos = new float2(n.pos.x,tarPos.position.y);
+            check = n.pos.y < tarPos.y && prior.pos.y > tarPos.y;
+            check = check || n.pos.y > tarPos.y && prior.pos.y < tarPos.y;
+            pos = new float2(n.pos.x,tarPos.y);
             dir = new int2(-1,0);
-            if(n.pos.x < tarPos.position.x){
+            if(n.pos.x < tarPos.x){
                 // its right of us
                 dir = new int2(1,0);
             }
@@ -146,7 +138,7 @@ public class navigator : MonoBehaviour
         return n;
     }
 
-    public string denyDir;
+    string denyDir;
     int intensity;
     // last direction chosen to navigate toward
 
@@ -205,10 +197,10 @@ public class navigator : MonoBehaviour
     public List<NavNode> generatePositions(){
         // returns 1 new position every time called
         desDir = new int2(-1,-1);
-        if(transform.position.x < tarPos.position.x){
+        if(transform.position.x < tarPos.x){
             desDir.x = 1;
         }
-        if(transform.position.y < tarPos.position.y){
+        if(transform.position.y < tarPos.y){
             desDir.y = 1;
         }
         int2[] dirs = {new int2(1,0),new int2(-1,0),new int2(0,1),new int2(0,-1)};
