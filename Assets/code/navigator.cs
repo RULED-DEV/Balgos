@@ -72,7 +72,6 @@ public class navigator : MonoBehaviour
                     // checkPath checks if the target position lies between the nodes
                     // chVar is the distance from the travel directio of the nodes and the target pos
                     if((chVar < navTargetRad && checkPath) || Chdist){
-                        Debug.Log("terminal position found");
                         ch = true;
                     }
                     if(i > 1){
@@ -85,7 +84,6 @@ public class navigator : MonoBehaviour
                         // figures out relation between last three  nodes to remove double backs
                         if(AtoB == BtoC){
                             // checks if the nodes double back (I.E same direction is used twice in succession) and handles it
-                            Debug.Log("removed double back");
                             posList.RemoveAt(i-1);
                             i--;
                         }
@@ -176,8 +174,6 @@ public class navigator : MonoBehaviour
             if(N.propDir.x == 0){chDir = "above";}
             // checks if propagation direction is equal to prior propogation direction
             if(chDir == denyDir){
-                Debug.Log(denyDir);
-                Debug.Log(N.propDir);
                 N.priority -= intensity;
             }
             if(Vector2.Distance(N.pos,posList[posList.Count-1].pos) > longestLength){

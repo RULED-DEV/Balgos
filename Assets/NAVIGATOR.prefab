@@ -47,13 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760bf8c0d76514e4daefe4df12814ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nav: {fileID: 0}
-  detect: {fileID: 0}
   idleSpeed: 5
-  attackSpeed: 0
-  attackRad: 0
-  mode: idle
-  player: {fileID: 0}
+  attackSpeed: 5
+  attackRad: 10
+  mode: aaa
+  mask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!114 &72904296883714313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,8 +66,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4742909fffd3443b3d232335a6d0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tarPos: {x: 27.3, y: 37.3, z: 0}
+  tarPos: {x: 27, y: 26, z: 0}
   navTargetRad: 2
+  idle: 0
   posList: []
 --- !u!114 &8958942256670191897
 MonoBehaviour:
