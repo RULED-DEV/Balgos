@@ -102,8 +102,8 @@ public class mediun : MonoBehaviour
             listPos = mesh.grid.get_nodes_grid(transform.position,width,height);
         }
         else{
-            Vector2 pos = mesh.transform.position + new Vector3(mesh.grid.width/2,mesh.grid.height/2,0);
-            listPos = mesh.grid.get_nodes_grid(pos,mesh.grid.width,mesh.grid.height);
+            //Vector2 pos = mesh.transform.position + new Vector3(mesh.grid.width/2,mesh.grid.height/2,0);
+            listPos = mesh.grid.get_nodes_grid(Vector2.zero,mesh.grid.width,mesh.grid.height);
         }
         foreach(int i in listPos){
             if(i < mesh.grid.worldPositions.Length){
