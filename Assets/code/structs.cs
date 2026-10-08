@@ -14,9 +14,6 @@ public struct mat_vals{
 
     public float decibels;
     // how loud the point is
-    public float minDecibelVal;
-    public float maxDecibelVal;
-    // defines the limit to decibels value
 
     public float decay;
     // how fast the noise decays to zero

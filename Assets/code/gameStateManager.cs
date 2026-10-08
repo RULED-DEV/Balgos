@@ -40,7 +40,6 @@ public class gameStateManager : MonoBehaviour
 
         mat_vals MV = new mat_vals();
         MV.decay = 2;
-        MV.maxDecibelVal = 200;
         MV.spreadRate = 1;
         MV.spreadPerc = 1f;
 

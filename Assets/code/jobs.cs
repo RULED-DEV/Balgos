@@ -37,7 +37,6 @@ public struct InitGridJob : IJobParallelFor
 
         mat_vals m = medium_val;
         float f = NodeArr[index].decibels;
-        m.minDecibelVal = MinVal;
         m.decibels = f;
         NodeArr[index] = m;
         // assigns mat vals
@@ -141,11 +140,9 @@ public struct MediumAssignJob : IJob
             {
                 MediumUpdate update = reader.Read<MediumUpdate>();
                 mat_vals t = NodeArr[update.index];
-                float m = t.minDecibelVal;
                 float s = t.decibels;
                 t = update.value;
                 t.decibels = s;
-                t.minDecibelVal = m;
                 NodeArr[update.index] = t;
                 
                 Sav.Add(update.index);
@@ -186,7 +183,7 @@ public struct spreadJob : IJobParallelFor
 
         // decays current node
         float decVAL = NodeArr[nodeIND].decibels - NodeArr[nodeIND].decay;
-        decVAL = Mathf.Clamp(decVAL,NodeArr[nodeIND].minDecibelVal,NodeArr[nodeIND].maxDecibelVal);
+        decVAL = Mathf.Clamp(decVAL,0,200);
         writer.Write(new NodeUpdate {index = nodeIND,value = decVAL});
 
         writer.EndForEachIndex();
@@ -242,12 +239,12 @@ public struct MergeSpreadJob : IJob
                 }
                 // updates decibels with new value
                 
-                if(update.value > t.minDecibelVal && !isActive[update.index]){
+                if(update.value > 0 && !isActive[update.index]){
                     isActive[update.index] = true;
                     activeNodes.Add(update.index);
                     // outList holds all the valid index positions
                 }
-                else if(update.value < t.minDecibelVal && update.index < NodeArr.Length){
+                else if(update.value < 0 && update.index < NodeArr.Length){
                     t.decibels = 0;
                     // removes node
                 }
