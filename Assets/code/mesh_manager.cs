@@ -46,6 +46,12 @@ public class mesh_manager : MonoBehaviour
         }
     }
 
+    void OnApplicationQuit(){
+        grid.remove_grid();
+        soundColors.Dispose();
+        // unloads grid
+    }
+
     void UpdatesoundmapTexture()
     {
         NativeArray<col_rank> colseq = new NativeArray<col_rank>(s.coloursequence.Length, Allocator.TempJob);

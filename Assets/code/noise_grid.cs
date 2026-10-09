@@ -56,9 +56,10 @@ public struct noise_grid{
     }
 
     public void remove_grid(){
-        // clears array
+        // clears Native Arrays/Lists
         if (Nodes.IsCreated) Nodes.Dispose();
         if (worldPositions.IsCreated) worldPositions.Dispose();
+        if (activeNodes.IsCreated) activeNodes.Dispose();
     } 
 
     public void updateMap(int frame){

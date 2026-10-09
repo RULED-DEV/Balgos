@@ -115,4 +115,10 @@ public class mediun : MonoBehaviour
         }
         listPos.Dispose();
     }
+
+    void OnApplicationQuit(){
+        // unloads Native arrays/lists
+        shadow.Dispose();
+        ActPos.Dispose();
+    }
 }
