@@ -97,23 +97,27 @@ public class mediun : MonoBehaviour
     }
 
     public void createShadow(){
-        NativeList<int> listPos;
+        
         if(width > 0){
-            listPos = mesh.grid.get_nodes_grid(transform.position,width,height);
+            NativeList<int> listPos = mesh.grid.get_nodes_grid(transform.position,width,height);
+            foreach(int i in listPos){
+                if(i < mesh.grid.worldPositions.Length){
+                    if(col == null || col.OverlapPoint(mesh.grid.worldPositions[i])){
+                        float2 tr = (float2)(Vector2)transform.position - mesh.grid.worldPositions[i];
+                        shadow.Add(tr);
+                    }
+                }
+            }
+            listPos.Dispose();
         }
         else{
-            //Vector2 pos = mesh.transform.position + new Vector3(mesh.grid.width/2,mesh.grid.height/2,0);
-            listPos = mesh.grid.get_nodes_grid(Vector2.zero,mesh.grid.width,mesh.grid.height);
-        }
-        foreach(int i in listPos){
-            if(i < mesh.grid.worldPositions.Length){
-                if(col == null || col.OverlapPoint(mesh.grid.worldPositions[i])){
-                    float2 tr = (float2)(Vector2)transform.position - mesh.grid.worldPositions[i];
+            foreach(float2 p in mesh.grid.worldPositions){
+                if(col == null || col.OverlapPoint(p)){
+                    float2 tr = (float2)(Vector2)transform.position - p;
                     shadow.Add(tr);
                 }
             }
         }
-        listPos.Dispose();
     }
 
     void OnApplicationQuit(){
