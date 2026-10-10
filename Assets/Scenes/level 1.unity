@@ -823,8 +823,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    minDecibelVal: 0
-    maxDecibelVal: 200
     decay: 1
     spreadRate: 2
     spreadPerc: 0.2
@@ -1068,8 +1066,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    minDecibelVal: 0
-    maxDecibelVal: 200
     decay: 1
     spreadRate: 2
     spreadPerc: 0.2
@@ -1313,8 +1309,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    minDecibelVal: 0
-    maxDecibelVal: 200
     decay: 1
     spreadRate: 2
     spreadPerc: 0.2
@@ -1868,8 +1862,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    minDecibelVal: 0
-    maxDecibelVal: 200
     decay: 1
     spreadRate: 2
     spreadPerc: 0.2
@@ -1953,8 +1945,6 @@ MonoBehaviour:
   - {fileID: -30382615, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
   MV:
     decibels: 0
-    minDecibelVal: 0
-    maxDecibelVal: 200
     decay: 0.5
     spreadRate: 1
     spreadPerc: 1
@@ -2223,8 +2213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    minDecibelVal: 0
-    maxDecibelVal: 200
     decay: 1
     spreadRate: 2
     spreadPerc: 0.2
@@ -2269,11 +2257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: grid.width
-      value: 34
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: grid.height
-      value: 43
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: soundrenderer
