@@ -50,9 +50,6 @@ public class gameStateManager : MonoBehaviour
             width = Mathf.RoundToInt(mesh.grid.width/mesh.grid.spacing),
             spacing = mesh.grid.spacing,
             medium_val = MV,
-            SPWidth = mesh.grid.spacingWidth,
-            GRWidth = mesh.grid.gradientWidth,
-            GRHeight = mesh.grid.gradientHeight,
         };
         JobHandle handleInit = jobInit.Schedule(mesh.grid.Nodes.Length, 512);
         handleInit.Complete();
