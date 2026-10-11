@@ -17,10 +17,6 @@ public struct InitGridJob : IJobParallelFor
     [ReadOnly] public float spacing;
     [ReadOnly] public mat_vals medium_val;
 
-    [ReadOnly] public float SPWidth;
-    [ReadOnly] public float GRWidth;
-    [ReadOnly] public float GRHeight;
-
     public void Execute(int index)
     {
         float posx = (index%width)*spacing;
@@ -29,19 +25,62 @@ public struct InitGridJob : IJobParallelFor
         PosArr[index] = tr;
         // converts index to world position
         
-        float MinVal = 0;
-        float ind = (index % (SPWidth+GRWidth))+1;
-        if(ind < GRWidth){
-            MinVal = GRHeight * (ind/GRHeight);
-        }
-
         mat_vals m = medium_val;
         float f = NodeArr[index].decibels;
         m.decibels = f;
         NodeArr[index] = m;
         // assigns mat vals
+    }
+}
 
-        // make background gradient
+[BurstCompile]
+public struct InitNavJob : IJobParallelFor
+{
+    public NativeArray<NavNode> nav;
+    
+    [ReadOnly] public NativeArray<mat_vals> NodeArr;
+
+    [ReadOnly] public float spacing;
+    [ReadOnly] public float width;
+    [ReadOnly] public float navSpacing;
+    [ReadOnly] public float navWidth;
+    [ReadOnly] public float thresh;
+
+    public void Execute(int index)
+    {
+        NavNode n = nav[index];
+
+        float posx = (Mathf.RoundToInt(index%navWidth)*navSpacing)+0.5f;
+        float posy = (Mathf.RoundToInt(index/navWidth)*navSpacing)+0.5f;
+        float2 tr = new float2(posx,posy);
+        n.pos = tr;
+
+        int ind = Mathf.Clamp(PTI(tr),0,NodeArr.Length-1);
+        n.priority = ind;
+
+        if(NodeArr[ind].spreadRate < thresh){
+            n.valid = true;
+        }
+
+        nav[index] = n;
+    }
+
+    int PTI(Vector2 pos){
+        // takes a world position and returns the closest node
+        float remx = pos.x % spacing;
+        float addx = 0;
+        if(remx >= spacing/2){
+            addx = spacing;
+        }
+        float remy = pos.y % spacing;
+        float addy = 0;
+        if(remy >= spacing/2){
+            addy = spacing;
+        }
+        // rounds pos values to grid
+        remx = pos.x - (pos.x%spacing) + addx;
+        remy = pos.y - (pos.y%spacing) + addy;
+        return Mathf.RoundToInt(((remx/spacing)+((remy/spacing)*(width))));
     }
 }
 
@@ -76,7 +115,7 @@ public struct MediumCheckJob : IJobParallelFor
         }
     }
 
-    public int PTI(Vector2 pos){
+    int PTI(Vector2 pos){
         // takes a world position and returns the closest node
         float remx = pos.x % spacing;
         float addx = 0;
