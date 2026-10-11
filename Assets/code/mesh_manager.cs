@@ -32,6 +32,12 @@ public class mesh_manager : MonoBehaviour
         // initialises grid
 
         Debug.Log("starts");
+        Invoke("constructNavGrid",0.05f);
+    }
+
+    void constructNavGrid(){
+        grid.constructNavGrid();
+        // constructs nav grid
     }
 
     public void FixedUpdate(){
