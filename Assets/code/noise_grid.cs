@@ -15,15 +15,16 @@ public struct noise_grid{
 
     public NativeArray<mat_vals> Nodes; // holds all the node values
     public NativeArray<float2> worldPositions;
-        
+
+    public NativeArray<NavNode> navigationGrid; // holds all the navigation nodes
+
     public NativeList<int> activeNodes; // nodes that currently have noise
  
     public int width, height;
     public float spacing;
 
-    public float spacingWidth;
-    public float gradientWidth;
-    public float gradientHeight;
+    public float navSpacing; // how far apart is each node
+    public float navThreshold; // how high does spreadRate need to be to invalidate a position
 
     public bool active;
 
@@ -34,6 +35,7 @@ public struct noise_grid{
         int nodeCount = (int)((width/spacing)*(height/spacing));
         Nodes = new NativeArray<mat_vals>(nodeCount, Allocator.Persistent);
         worldPositions = new NativeArray<float2>(nodeCount, Allocator.Persistent);
+        
         // sets array lengths
 
         var jobInit = new InitGridJob
@@ -43,9 +45,6 @@ public struct noise_grid{
             width = Mathf.RoundToInt(width/spacing),
             spacing = spacing,
             medium_val = air,
-            SPWidth = spacingWidth,
-            GRWidth = gradientWidth,
-            GRHeight = gradientHeight,
         };
         JobHandle handleInit = jobInit.Schedule(nodeCount, 512);
         handleInit.Complete();
@@ -55,11 +54,37 @@ public struct noise_grid{
         Debug.Log("graph complete!");
     }
 
+    public void constructNavGrid(){
+        int nodeCount = Mathf.RoundToInt((width/navSpacing)*(height/navSpacing));
+        navigationGrid = new NativeArray<NavNode>(nodeCount, Allocator.Persistent);
+        var jobgenerate = new InitNavJob
+        {
+            nav = navigationGrid,
+            NodeArr = Nodes,
+            spacing = spacing,
+            width = Mathf.RoundToInt(width/spacing),
+            navSpacing = navSpacing,
+            navWidth = width/navSpacing,
+            thresh = navThreshold,
+        };
+        JobHandle handlegeberate = jobgenerate.Schedule(nodeCount, 512);
+        handlegeberate.Complete();
+
+        foreach(NavNode n in navigationGrid){
+            Debug.Log(n.pos);
+            Debug.Log(n.valid);
+            Debug.Log(n.priority);
+            Debug.Log("node done");
+        }
+        Debug.Log(navigationGrid.Length);
+    }
+
     public void remove_grid(){
         // clears Native Arrays/Lists
         if (Nodes.IsCreated) Nodes.Dispose();
         if (worldPositions.IsCreated) worldPositions.Dispose();
         if (activeNodes.IsCreated) activeNodes.Dispose();
+        if (navigationGrid.IsCreated) navigationGrid.Dispose();
     } 
 
     public void updateMap(int frame){
