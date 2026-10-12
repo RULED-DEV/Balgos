@@ -51,29 +51,28 @@ public struct InitNavJob : IJobParallelFor
     {
         NavNode n = nav[index];
 
-        float posx = (Mathf.RoundToInt(index%navWidth)*navSpacing);
-        float posy = (Mathf.RoundToInt(index/navWidth)*navSpacing);
-        float2 tr = new float2(posx+0.5f,posy+0.5f);
+        float posx = (index%navWidth)*navSpacing;
+        float posy = ((index/navWidth) - ((index/navWidth)%1))*navSpacing;
+        float2 tr = new float2(posx,posy);
         n.pos = tr;
 
         n.valid = true;
+        List<float2> posList = new List<float2>();
 
-        int i = Mathf.Clamp(PTI(new float2(posx+chSize,posy)),0,NodeArr.Length-1);
-        if(NodeArr[i].spreadRate > thresh){
-            n.valid = false;
-        }// checks area surrounding node to see if its valid  
-        i = Mathf.Clamp(PTI(new float2(posx,posy+chSize)),0,NodeArr.Length-1);
-        if(NodeArr[i].spreadRate > thresh){
-            n.valid = false;
+        posList.Add(new float2(tr.x+chSize,tr.y));
+        posList.Add(new float2(tr.x-chSize,tr.y));
+        posList.Add(new float2(tr.x,tr.y+chSize));
+        posList.Add(new float2(tr.x,tr.y-chSize));
+        // checks neighbouring squares
+
+        foreach(float2 f in posList){
+            int i = Mathf.Clamp(PTI(f),0,NodeArr.Length-1);
+            if(NodeArr[i].spreadRate > thresh){
+                // checks area surrounding node to see if its valid
+                n.valid = false;
+            } 
         }
-        i = Mathf.Clamp(PTI(new float2(posx-chSize,posy)),0,NodeArr.Length-1);
-        if(NodeArr[i].spreadRate > thresh){
-            n.valid = false;
-        }
-        i = Mathf.Clamp(PTI(new float2(posx,posy-chSize)),0,NodeArr.Length-1);
-        if(NodeArr[i].spreadRate > thresh){
-            n.valid = false;
-        }
+
         nav[index] = n;
     }
 
