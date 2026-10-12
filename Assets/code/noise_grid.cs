@@ -24,6 +24,7 @@ public struct noise_grid{
     public float spacing;
 
     public float navSpacing; // how far apart is each node
+    public float navCheckSize; // how large an area each node checks to determine if its valid
     public float navThreshold; // how high does spreadRate need to be to invalidate a position
 
     public bool active;
@@ -66,17 +67,10 @@ public struct noise_grid{
             navSpacing = navSpacing,
             navWidth = width/navSpacing,
             thresh = navThreshold,
+            chSize = navCheckSize,
         };
         JobHandle handlegeberate = jobgenerate.Schedule(nodeCount, 512);
         handlegeberate.Complete();
-
-        foreach(NavNode n in navigationGrid){
-            Debug.Log(n.pos);
-            Debug.Log(n.valid);
-            Debug.Log(n.priority);
-            Debug.Log("node done");
-        }
-        Debug.Log(navigationGrid.Length);
     }
 
     public void remove_grid(){
