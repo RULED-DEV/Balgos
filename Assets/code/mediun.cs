@@ -23,6 +23,10 @@ public class mediun : MonoBehaviour
         shadow = new NativeList<float2>(Allocator.Persistent);
         createShadow();
         updateNodeVal();
+        if(width < 0){
+            // this triggers only for the map medium
+            mesh.grid.constructNavGrid();
+        }
     }
 
     public void StepNodeVal(){
@@ -97,7 +101,6 @@ public class mediun : MonoBehaviour
     }
 
     public void createShadow(){
-        
         if(width > 0){
             NativeList<int> listPos = mesh.grid.get_nodes_grid(transform.position,width,height);
             foreach(int i in listPos){
