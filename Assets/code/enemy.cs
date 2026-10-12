@@ -40,7 +40,7 @@ public class enemy : MonoBehaviour
     void Update()
     {
         if(nav.posList.Count > 0){
-            if(Vector2.Distance(nav.posList[0].pos,transform.position) < nav.navTargetRad){
+            if(Vector2.Distance(nav.posList[0].pos,transform.position) < 0.1f){
                 nav.posList.RemoveAt(0);
             }
             else{
@@ -53,7 +53,6 @@ public class enemy : MonoBehaviour
         if((nav.posList.Count == 0 || idleTimer < Time.time) && (mode == "idle" || mode == "scared")){
             idleTimer = Time.time + 60;
             mode = "idle";
-            nav.idle = true;
             setRandPos(false);
             nav.Navigate();
         }
@@ -79,7 +78,6 @@ public class enemy : MonoBehaviour
     public void DETECTNOISE(){
         if(mode != "scared"){
             detect.activated = false;
-            nav.idle = false;
             nav.tarPos = player.transform.position;
             nav.Navigate();
             mode = "investigate";
@@ -90,7 +88,6 @@ public class enemy : MonoBehaviour
         idleTimer = Time.time + 60;
         fear.activated = false;
         mode = "scared";
-        nav.idle = true;
         setRandPos(true);
         nav.Navigate();
     }

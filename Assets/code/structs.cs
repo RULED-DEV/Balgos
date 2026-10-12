@@ -32,10 +32,6 @@ public struct NavNode{
     // position in world of node
     public bool valid;
     // is the position in a wall or not
-    public int priority;
-    // how likely is this node to be correct
-    public int2 propDir;
-    // what direction did it check in
 }
 
 [System.Serializable]
