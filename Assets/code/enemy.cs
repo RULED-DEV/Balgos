@@ -5,8 +5,9 @@ using UnityEngine;
 public class enemy : MonoBehaviour
 {
 
-    public float idleSpeed;
-    public float attackSpeed;
+    public float rotSpeed;
+    public float moveSpeed;
+    public float attackMult;
     public float fearMult;
 
     public float attackRad;
@@ -20,12 +21,9 @@ public class enemy : MonoBehaviour
     BALGOS player;
     public LayerMask mask;
 
-    float idleTimer;
-
     // works but needs tuning
     // random idle pos should be centered to room
     // FEAR should generate a position away from the player
-    // movement should be inertial
     // need to impliment SFX
 
     void Start(){
@@ -39,40 +37,67 @@ public class enemy : MonoBehaviour
 
     void Update()
     {
-        if(nav.posList.Count > 0){
-            if(Vector2.Distance(nav.posList[0].pos,transform.position) < 0.1f){
-                nav.posList.RemoveAt(0);
+        if(mode == "attack"){
+            // attack logic
+            if(!playerCheck()){
+                mode = "idle";
+                nav.posList = new List<NavNode>();
             }
             else{
-                transform.up = (Vector2)nav.posList[0].pos-(Vector2)transform.position;
-                float speed = idleSpeed;
-                if(mode == "scared"){speed = speed*fearMult;}
-                rb.velocity = transform.up*speed;
+                // player is still seen
+                moveToPos(player.transform.position,attackMult);
             }
         }
-        if((nav.posList.Count == 0 || idleTimer < Time.time) && (mode == "idle" || mode == "scared")){
-            idleTimer = Time.time + 60;
-            mode = "idle";
-            setRandPos(false);
-            nav.Navigate();
-        }
-        if(mode != "idle" && mode != "scared"){
-            // doesnt work yet
-            Vector2 vect = player.transform.position-transform.position;
-            float d = Vector2.Distance(player.transform.position,transform.position);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, vect, d, mask);
-            if(d < attackRad && hit.collider != null && hit.collider.tag == "Player"){
-                // attack player
-                mode = "attack";
+        else{
+            // navigation logic
+            if(nav.posList.Count > 0){
+                // moves to next position
+                if(Vector2.Distance(transform.position,nav.posList[0].pos) < 0.5f){
+                    nav.posList.RemoveAt(0); // removes node when nearby
+                }
+                else{
+                    if(mode == "scared"){
+                        moveToPos(nav.posList[0].pos,fearMult);
+                    }
+                    else{
+                        moveToPos(nav.posList[0].pos,1);
+                    }
+                }
             }
-            else if(mode == "attack"){
+            else{
                 mode = "idle";
+                setRandPos(transform.position);
+                // navigates in the direction of the center of the map
+                nav.Navigate();
+                // generates new pos to idle toward
+            }
+            if(mode == "investigate"){
+                if(playerCheck()){
+                    mode = "attack";
+                }
             }
         }
-        if(mode == "attack"){
-            transform.up = player.transform.position-transform.position;
-            rb.velocity = transform.up*attackSpeed;
+    }
+
+    bool playerCheck(){
+        Vector2 vect = player.transform.position-transform.position;
+        float d = Vector2.Distance(player.transform.position,transform.position);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, vect, d, mask);
+        if(d < attackRad && hit.collider != null && hit.collider.tag == "Player"){
+            // attack player
+            return true;
         }
+        return false;
+    }
+
+    void moveToPos(Vector2 pos,float mult){
+        Vector2 dir = pos-(Vector2)transform.position;
+        Vector2 sav = transform.up;
+        transform.up = dir;
+        float savAng = transform.eulerAngles.z;
+        rb.AddForce(transform.up*moveSpeed*mult);
+        transform.up = sav;
+        transform.eulerAngles = new Vector3(0,0,Mathf.LerpAngle(transform.eulerAngles.z,savAng,Time.deltaTime*rotSpeed*mult));
     }
 
     public void DETECTNOISE(){
@@ -85,24 +110,24 @@ public class enemy : MonoBehaviour
     }
 
     public void FEAR(){
-        idleTimer = Time.time + 60;
         fear.activated = false;
         mode = "scared";
-        setRandPos(true);
+        setRandPos(player.transform.position);
+        // navigate away from player
         nav.Navigate();
     }
 
-    public void setRandPos(bool fear){
-        Vector2 vect = Vector2.zero;
-        int breakout = 0;
-        while(breakout < 50){
-            breakout++;
-            vect = new Vector2(Random.Range(0,player.mesh.grid.width),Random.Range(0,player.mesh.grid.height));
-            int pos = player.mesh.grid.pos_to_ind(vect);
-            if(player.mesh.grid.Nodes[pos].decay == player.mesh.air.decay){
-                if(!fear || Vector2.Distance(vect,player.transform.position) < 20);
-                nav.tarPos = vect;
+    public void setRandPos(Vector2 pos){
+        Vector2 output = Vector2.zero;
+        while(output == Vector2.zero){
+            Vector2 rand = new Vector2(Random.Range(0,50),Random.Range(0,50));
+            // picks random position on the map
+            NavNode n = nav.nearestNode(rand);
+            if(n.valid && Vector2.Distance(pos,n.pos) > 20f){
+                // generates a position that is valid and a certain distance from pos
+                output = n.pos;
             }
         }
+        nav.tarPos = output;
     }
 }
