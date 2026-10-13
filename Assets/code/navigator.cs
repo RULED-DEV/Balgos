@@ -17,8 +17,6 @@ public class navigator : MonoBehaviour
 
     void Start(){
         mesh = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0];
-        //Navigate();
-        Invoke("Navigate",0.05f);
     }
 
     public List<NavNode> posList;
@@ -102,7 +100,7 @@ public class navigator : MonoBehaviour
         return goal;
     }
 
-    int2 genDir(Vector2 startPos,Vector2 endPos){
+    public int2 genDir(Vector2 startPos,Vector2 endPos){
         // produces the direction of travel to target
         int2 t = new int2(1,1);
         if(endPos.x < startPos.x){t.x = -1;}
