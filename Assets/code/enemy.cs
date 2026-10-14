@@ -52,7 +52,7 @@ public class enemy : MonoBehaviour
             // navigation logic
             if(nav.posList.Count > 0){
                 // moves to next position
-                if(Vector2.Distance(transform.position,nav.posList[0].pos) < 0.5f){
+                if(Vector2.Distance(transform.position,nav.posList[0].pos) < 2f){
                     nav.posList.RemoveAt(0); // removes node when nearby
                 }
                 else{
@@ -92,12 +92,15 @@ public class enemy : MonoBehaviour
 
     void moveToPos(Vector2 pos,float mult){
         Vector2 dir = pos-(Vector2)transform.position;
-        Vector2 sav = transform.up;
-        transform.up = dir;
-        float savAng = transform.eulerAngles.z;
-        rb.AddForce(transform.up*moveSpeed*mult);
-        transform.up = sav;
+        // vector pointing in direction of pos
+
+        float savAng = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg; 
+        savAng += 90; // the math is a little off but still works
+        // extracts angle from dir
+
+        rb.AddForce(dir*moveSpeed*mult);
         transform.eulerAngles = new Vector3(0,0,Mathf.LerpAngle(transform.eulerAngles.z,savAng,Time.deltaTime*rotSpeed*mult));
+        // moves/rotates enemy toward target
     }
 
     public void DETECTNOISE(){
