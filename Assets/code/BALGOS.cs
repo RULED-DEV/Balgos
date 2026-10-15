@@ -15,6 +15,8 @@ public class BALGOS : MonoBehaviour
     public float speed;
     public float rotSPEED;
 
+    public float reloadDist;
+
     float step_timer;
     public float trail_noise;
 
@@ -26,7 +28,7 @@ public class BALGOS : MonoBehaviour
         mesh = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0];
     }
 
-    void Update()
+    void FixedUpdate()
     {
         movement();
         load_manager();
@@ -50,16 +52,18 @@ public class BALGOS : MonoBehaviour
 
     void fireManager(){
         if(Input.GetMouseButtonDown(0)){
-            if(!isbreachopen && isroundload){
-                isroundload = false;
+            if(!isbreachopen){
+                isbreachopen = true;
                 FIRE();
                 barrel_fire_point.NOISE(); // fire noise
                 bullet_EJECT.NOISE(); // bullet casing ejecting to floor
                 breach_point.NOISE(); // breach opening
+                checkReload();
             }
         }
         if(Input.GetMouseButtonDown(1) && echoT < Time.time){
             // echolocate
+            checkReload();
             echoT = Time.time + 1.5f;
             echolocate_point.NOISE();
         }
@@ -67,9 +71,9 @@ public class BALGOS : MonoBehaviour
 
     public void FIRE(){
         RaycastHit2D hit = Physics2D.Raycast(barrel_fire_point.transform.position, barrel_fire_point.transform.up, 100, mask);
-        limb l = hit.collider.GetComponent<limb>();
-        if(l != null && l.canInjure){
-            l.isInjure = true;
+        enemy l = hit.collider.GetComponent<enemy>();
+        if(l != null){
+            l.death();
         }
         Vector3 diff = (Vector3)hit.point-barrel_fire_point.transform.position;
         for(float i = 0.01f; i < 1.01f; i += 0.01f){
@@ -78,19 +82,16 @@ public class BALGOS : MonoBehaviour
         }
     }
 
-    bool isbreachopen;
+    public bool isbreachopen;
+    // if breach closed then can fire
 
-    bool isroundload = true; 
-    
-    float loadtimer;
-    string queued_action;
+    public bool isleveropen;
+    // if lever closed then can reload 
 
     public limb bullet_LOAD;
     // point where bullet is loaded/ejected
     public limb bullet_EJECT;
     // fumbles bullet
-    public limb bullet_PICKUP;
-    // point where bullet is picked up
     public limb barrel_fire_point;
     // where bullet is fired
     public limb echolocate_point;
@@ -102,51 +103,53 @@ public class BALGOS : MonoBehaviour
     public limb FOOT;
     // foot noises?
 
+    // notes on reload
+    // to fire breach must be closed, breach opens on fire
+    // if lever is open the player has a reload "charge"
+    // reloading (Q) consumes the charge closing both lever and breach
+
     public void load_manager(){
         // handles loading
-        if(Input.GetKeyDown(KeyCode.Q)){
-            // open/close breach
-            if(loadtimer < Time.time){
-                loadtimer = Time.time + 0.2f;
-                queued_action = "breach_success";
-                // queues action
+        // if(Input.GetKeyDown(KeyCode.E) && !isbreachopen && isleveropen){
+        //     // close lever only when breach is open and lever is open
+        //     isleveropen = false;
+        //     lever_point.NOISE();
+        // }
+        if(Input.GetKeyDown(KeyCode.Q) && isbreachopen && isleveropen){
+            // open/close breach when breach and lever are open
+            isbreachopen = false;
+            isleveropen = false;
+            lever_point.NOISE();
+            breach_point.NOISE();
+        }
+    }
+
+    public void checkReload(){
+        enemy[] E = FindObjectsByType<enemy>(FindObjectsSortMode.None);
+        // gets all enemies
+        enemy sel = E[0];
+        Vector2 pos = transform.position;
+        foreach(enemy e in E){
+            if(Vector2.Distance(sel.transform.position,pos) > Vector2.Distance(e.transform.position,pos)){
+                sel = e;
             }
         }
-        if(Input.GetKeyDown(KeyCode.E)){
-            // load/unload round
-            if(isbreachopen && !isroundload){
-                if(loadtimer < Time.time){
-                    loadtimer = Time.time + 0.5f;
-                    queued_action = "load_success";
-                    // queues action
-                    bullet_PICKUP.NOISE();
-                }
-            }
-        }
-        if(loadtimer < Time.time && queued_action != ""){
-            if(queued_action == "breach_success"){
-                isbreachopen = !isbreachopen;
-                lever_point.NOISE();
-                queued_action = "";
-            }
-            if(queued_action == "load_success"){
-                isroundload = true;
-                //bullet_LOAD.NOISE();
-                // unfortunately isnt audible enough
-                queued_action = "";
-                breach_point.NOISE();
-            }
+        // selects the closest enemy
+        if(Vector2.Distance(pos,sel.transform.position) < reloadDist){
+            isleveropen = true;
+            lever_point.NOISE();
+            // player can reload if enemy close enough
         }
     }
 
     public void load_vis(){
         float breachANG = 0;
-        if(isbreachopen){
+        if(isleveropen){
             breachANG = 90;
         }
         Vector2 bulletPOS = new Vector2(0.006f,0.08f);
-        if(!isroundload){
-            bulletPOS = new Vector2(0.006f,-0.02f);
+        if(isbreachopen){
+            bulletPOS = new Vector2(0.006f,-0.045f);
         }
         lever_point.transform.localEulerAngles = new Vector3(0,0,Mathf.LerpAngle(lever_point.transform.localEulerAngles.z,breachANG,Time.deltaTime*5));
         bullet_LOAD.transform.localPosition = Vector2.Lerp(bullet_LOAD.transform.localPosition,bulletPOS,Time.deltaTime*5);
