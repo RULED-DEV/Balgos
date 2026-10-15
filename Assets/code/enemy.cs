@@ -133,4 +133,9 @@ public class enemy : MonoBehaviour
         }
         nav.tarPos = output;
     }
+
+    public void death(){
+        Debug.Log("i am dead");
+        Destroy(gameObject);
+    }
 }
