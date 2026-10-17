@@ -19,8 +19,8 @@ public class act_updater : MonoBehaviour
     {
         if(T < Time.time){
             T = Time.time + refresh_timer;
-            foreach(mediun m in meds){
-                m.StepNodeVal();
+            foreach(mediun m in meds){ 
+                m.stepNodeVal();
             }
         }
     }
