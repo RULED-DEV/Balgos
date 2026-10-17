@@ -13,6 +13,11 @@ public class enemy : MonoBehaviour
     public float attackRad;
 
     public string mode = "idle";
+
+    public float deathRange;
+    public float deathRot;
+    public mat_vals deathMat;
+    // when we die how far away are the body parts allowed to move
     
     navigator nav;
     SoundSwitch detect;
@@ -46,6 +51,10 @@ public class enemy : MonoBehaviour
             else{
                 // player is still seen
                 moveToPos(player.transform.position,attackMult);
+                if(Vector2.Distance(player.transform.position,transform.position) < 2){
+                    player.death();
+                    // player is killed
+                }
             }
         }
         else{
@@ -135,7 +144,28 @@ public class enemy : MonoBehaviour
     }
 
     public void death(){
-        Debug.Log("i am dead");
+        mediun[] meds = GetComponentsInChildren<mediun>();
+        float add = 0.01f;
+        foreach(mediun m in meds){
+            Vector3 pos = new Vector3(Random.Range(-deathRange*10,deathRange*10),Random.Range(-deathRange*10,deathRange*10),0);
+            pos = pos * 0.1f;
+            float rot = Random.Range(-deathRot,deathRot);
+            // sets a random rot and pos
+            
+            m.transform.position += pos;
+            m.transform.eulerAngles += new Vector3(0,0,rot);
+            // position of medium is changed
+
+            // m.medium_val = deathMat;
+            // m.medium_val.decay += add;
+            // add += 0.01f;
+            // medium doesnt like having its medium_val changed
+            
+            m.resetNodeVal();
+            m.OnApplicationQuit();
+            // medium is removed and activelists are disposed                        
+        }
         Destroy(gameObject);
+        // need to figure out how to remove shadow
     }
 }
