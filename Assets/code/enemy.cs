@@ -31,13 +31,20 @@ public class enemy : MonoBehaviour
     // FEAR should generate a position away from the player
     // need to impliment SFX
 
-    void Start(){
+    void Awake(){
         nav = GetComponent<navigator>();
         detect = GetComponents<SoundSwitch>()[0];
         fear = GetComponents<SoundSwitch>()[1];
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("BALGOS").GetComponent<BALGOS>();
         mode = "idle";
+        mediun[] meds = GetComponentsInChildren<mediun>();
+        float add = 0.01f;
+        foreach(mediun m in meds){
+            m.medium_val.decay += add;
+            add += 0.01f;
+        }
+        // autimatically differentiates the decay values, allowing mediuns to properly imprint onto the grid
     }
 
     void Update()
