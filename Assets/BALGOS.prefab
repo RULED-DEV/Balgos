@@ -321,10 +321,12 @@ MonoBehaviour:
     m_Bits: 384
   speed: 4
   rotSPEED: 1
-  trail_noise: 120
+  reloadDist: 5.5
+  trail_noise: 90
+  isbreachopen: 0
+  isleveropen: 0
   bullet_LOAD: {fileID: 1715639626361764200}
   bullet_EJECT: {fileID: 7805368211238694786}
-  bullet_PICKUP: {fileID: 4024673973687332357}
   barrel_fire_point: {fileID: 3958143578332757087}
   echolocate_point: {fileID: 3369744827742519493}
   lever_point: {fileID: 1466371435106042350}
@@ -703,7 +705,7 @@ Transform:
   m_GameObject: {fileID: 4868983961669997874}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.006, y: 0, z: 0}
+  m_LocalPosition: {x: 0.006, y: 0.08, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1031,7 +1033,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0.40000004}
+  m_LocalScale: {x: 3, y: 3, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7609664399415448119}
