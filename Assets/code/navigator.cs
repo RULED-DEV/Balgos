@@ -87,12 +87,9 @@ public class navigator : MonoBehaviour
             new float2(0,-tr.y),
             // no diagonals as they can clip through walls
         };
-        Debug.Log(node.pos);
         foreach(float2 p in positions){
             float2 pos = node.pos + (p*mesh.grid.navSpacing);
             NavNode check = nearestNode(pos);
-            Debug.Log(check.pos);
-            Debug.Log(check.valid);
             if(check.valid){
                 return check;
             }
@@ -128,7 +125,7 @@ public class navigator : MonoBehaviour
         remy = pos.y - (pos.y%spacing) + addy;
 
         int ind = Mathf.RoundToInt(((remx/spacing)+((remy/spacing)*(width))));
-        ind = Mathf.Clamp(ind,0,mesh.grid.navigationGrid.Length);
+        ind = Mathf.Clamp(ind,0,mesh.grid.navigationGrid.Length-1);
         return mesh.grid.navigationGrid[ind];
     }
 }
