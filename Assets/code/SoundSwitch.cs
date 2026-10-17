@@ -26,7 +26,7 @@ public class SoundSwitch : MonoBehaviour
             T = Time.time + interval;
             float thresh = m.grid.Nodes[m.grid.pos_to_ind((Vector2)transform.position)].decibels;
             // grabs decibel val at objects node position
-            if(thresh > threshold){
+            if(thresh > threshold && Conn != null){
                 activated = true;
                 Conn.Invoke(ACTSTR,0);
             }
