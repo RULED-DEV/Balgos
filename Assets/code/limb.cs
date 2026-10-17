@@ -19,12 +19,6 @@ public class limb : MonoBehaviour
     public int recor; // how mamy times it bounces
     public float T; // time between bounces
     
-    public bool canInjure;
-    public bool isInjure;
-
-    public float injMOD;
-    // modifies all above values
-
     public AudioSource SFX;
     public AudioClip sound;
     // needs audio
@@ -51,20 +45,18 @@ public class limb : MonoBehaviour
     float rec;
 
     public void NOISE(){
-        float mod = 1;
-        if(isInjure){mod += injMOD;}
         NPOS = transform.position;
-        LOCNOISE = volume*mod;
-        rec = recor*mod;
-        noise(mod);
+        LOCNOISE = volume;
+        rec = recor;
+        noise();
     }
 
-    void noise(float mod){
-        if(rand){NPOS = randpos(NPOS,spread*mod);}
+    void noise(){
+        if(rand){NPOS = randpos(NPOS,spread);}
         mesh.grid.editnodeval(mesh.grid.pos_to_ind(NPOS),LOCNOISE);
         rec-- ;
         LOCNOISE = LOCNOISE/1.5f;
-        float t = T/mod;
+        float t = T;
         if(recor > 0 && continuity){
             Invoke("noise",t);
         }
