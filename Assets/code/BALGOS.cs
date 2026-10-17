@@ -71,7 +71,12 @@ public class BALGOS : MonoBehaviour
 
     public void FIRE(){
         RaycastHit2D hit = Physics2D.Raycast(barrel_fire_point.transform.position, barrel_fire_point.transform.up, 100, mask);
-        enemy l = hit.collider.GetComponent<enemy>();
+        GameObject g = hit.collider.gameObject;
+        while(g.transform.parent != null){
+            g = g.transform.parent.gameObject;
+        }
+        // when raycast hits a limb it will move up until it reaches the enemies main body
+        enemy l = g.GetComponent<enemy>();
         if(l != null){
             l.death();
         }
@@ -127,18 +132,21 @@ public class BALGOS : MonoBehaviour
     public void checkReload(){
         enemy[] E = FindObjectsByType<enemy>(FindObjectsSortMode.None);
         // gets all enemies
-        enemy sel = E[0];
-        Vector2 pos = transform.position;
-        foreach(enemy e in E){
-            if(Vector2.Distance(sel.transform.position,pos) > Vector2.Distance(e.transform.position,pos)){
-                sel = e;
+        
+        if(E.Length > 0){
+            enemy sel = E[0];
+            Vector2 pos = transform.position;
+            foreach(enemy e in E){
+                if(Vector2.Distance(sel.transform.position,pos) > Vector2.Distance(e.transform.position,pos)){
+                    sel = e;
+                }
             }
-        }
-        // selects the closest enemy
-        if(Vector2.Distance(pos,sel.transform.position) < reloadDist){
-            isleveropen = true;
-            lever_point.NOISE();
-            // player can reload if enemy close enough
+            // selects the closest enemy
+            if(Vector2.Distance(pos,sel.transform.position) < reloadDist && !isleveropen){
+                isleveropen = true;
+                lever_point.NOISE();
+                // player can reload if enemy close enough
+            }
         }
     }
 
@@ -153,6 +161,12 @@ public class BALGOS : MonoBehaviour
         }
         lever_point.transform.localEulerAngles = new Vector3(0,0,Mathf.LerpAngle(lever_point.transform.localEulerAngles.z,breachANG,Time.deltaTime*5));
         bullet_LOAD.transform.localPosition = Vector2.Lerp(bullet_LOAD.transform.localPosition,bulletPOS,Time.deltaTime*5);
+    }
+
+    public void death(){
+        Application.Quit();
+        Debug.Log("i am dead");
+        // player dies
     }
 
     void movement(){
