@@ -57,7 +57,7 @@ public struct InitNavJob : IJobParallelFor
         n.pos = tr;
 
         n.valid = true;
-        NativeList<float2> posList = new NativeList<float2>(Allocator.temp);
+        NativeList<float2> posList = new NativeList<float2>(Allocator.Temp);
         posList.Add(new float2(tr.x+chSize,tr.y));
         posList.Add(new float2(tr.x-chSize,tr.y));
         posList.Add(new float2(tr.x,tr.y+chSize));
