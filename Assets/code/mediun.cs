@@ -29,7 +29,7 @@ public class mediun : MonoBehaviour
         }
     }
 
-    public void StepNodeVal(){
+    public void stepNodeVal(){
         // used to update mediuns position.
         // resets prior call of updateNodeVal and then calls another
         resetNodeVal();
@@ -73,7 +73,7 @@ public class mediun : MonoBehaviour
         ActPos = SavPos;
     }
 
-    void resetNodeVal(){
+    public void resetNodeVal(){
         if(ActPos.IsCreated){
             var stream = new NativeStream(ActPos.Length, Allocator.TempJob);
             var jobReset = new MediumResetJob
@@ -123,9 +123,9 @@ public class mediun : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit(){
+    public void OnApplicationQuit(){
         // unloads Native arrays/lists
-        shadow.Dispose();
-        ActPos.Dispose();
+        if(shadow.IsCreated) shadow.Dispose();
+        if(ActPos.IsCreated) ActPos.Dispose();
     }
 }
