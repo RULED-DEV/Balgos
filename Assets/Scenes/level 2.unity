@@ -530,11 +530,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: BALGOS
       objectReference: {fileID: 0}
+    - target: {fileID: 1970288302787428854, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: medium_val.decay
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2337241798483972023, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2829713680759644305, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: medium_val.decay
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369744827742519493, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: volume
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3497676789367533968, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
       propertyPath: medium_val.decay
       value: 1.4
       objectReference: {fileID: 0}
@@ -589,6 +601,10 @@ PrefabInstance:
     - target: {fileID: 6944449614643721184, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554928270765203178, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: trail_noise
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -650,6 +666,10 @@ PrefabInstance:
     - target: {fileID: 2840621755839561599, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: m_Name
       value: NAVIGATOR (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840621755839561599, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3444650481143216229, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: medium_val.decay
@@ -1025,12 +1045,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131871955}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 55
+  volume: 49
   spread: 0
   continuity: 0
   recor: 0
@@ -1505,6 +1525,10 @@ PrefabInstance:
       propertyPath: medium_val.decay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1225413346647693335, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
+      propertyPath: m_CompositeOperation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1497658274296480954, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: medium_val.decay
       value: 1
@@ -1525,6 +1549,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NAVIGATOR
       objectReference: {fileID: 0}
+    - target: {fileID: 3173217241906145040, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
+      propertyPath: m_CompositeOperation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3444650481143216229, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: medium_val.decay
       value: 1
@@ -1537,9 +1565,21 @@ PrefabInstance:
       propertyPath: medium_val.decay
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4214769917813221298, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
+      propertyPath: m_CompositeOperation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5020634072088368155, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: moveSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048510668202058075, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
+      propertyPath: m_CompositeOperation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618493713770857470, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
+      propertyPath: m_CompositeOperation
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6761063199468290819, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: threshold
@@ -1591,7 +1631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8958942256670191897, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: threshold
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1610,7 +1650,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2129866288}
     - targetCorrespondingSourceObject: {fileID: 8889202740510113880, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 1131871964}
     - targetCorrespondingSourceObject: {fileID: 8889202740510113880, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       insertIndex: -1
@@ -1653,6 +1693,10 @@ PrefabInstance:
     - target: {fileID: 2840621755839561599, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: m_Name
       value: NAVIGATOR (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840621755839561599, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3444650481143216229, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: medium_val.decay
@@ -2071,6 +2115,10 @@ PrefabInstance:
     - target: {fileID: 2840621755839561599, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: m_Name
       value: NAVIGATOR (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840621755839561599, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3444650481143216229, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
       propertyPath: medium_val.decay
@@ -3293,9 +3341,9 @@ MonoBehaviour:
     active: 0
   air:
     decibels: 0
-    decay: 3
+    decay: 2
     spreadRate: 1
-    spreadPerc: 0.5
+    spreadPerc: 0.3
     spreadExclusive: 0.5
   s: {fileID: 8810452904924400795}
   refreshrate: 0.025

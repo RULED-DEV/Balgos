@@ -120,7 +120,7 @@ public class enemy : MonoBehaviour
             }
         }
         if(growlTimer < Time.time){
-            limbs[4].NOISE();
+            //limbs[4].NOISE();
             // limbs at 4 is for ambient growling
             growlTimer = Time.time + Random.Range(25,55);
         }
@@ -146,12 +146,13 @@ public class enemy : MonoBehaviour
         // extracts angle from dir
 
         rb.AddForce(dir*moveSpeed*mult);
-        transform.eulerAngles = new Vector3(0,0,Mathf.LerpAngle(transform.eulerAngles.z,savAng,Time.deltaTime*rotSpeed*mult));
+        rb.SetRotation(Mathf.LerpAngle(transform.eulerAngles.z,savAng,Time.deltaTime*rotSpeed*mult));
         // moves/rotates enemy toward target
     }
 
     public void DETECTNOISE(){
-        if(mode != "scared"){
+        if(mode != "scared" && mode != "attack"){
+            Debug.Log("detected");
             detect.activated = false;
             nav.tarPos = player.transform.position;
             nav.Navigate();
