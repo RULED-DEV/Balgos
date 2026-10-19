@@ -98,12 +98,10 @@ public class enemy : MonoBehaviour
             if(mode == "investigate"){
                 if(playerCheck()){
                     mode = "attack";
-                    if(screamTimer < Time.time){
-                        screamTimer = Time.time + 5;
-                        limbs[6].NOISE();
+                        Debug.Log("scream");
+                        limbs[5].NOISE();
                         // limbs at 6 is for scared scream
                         // when entering attack mode it screams to warn the player
-                    }
                 }
             }
         }
@@ -112,18 +110,18 @@ public class enemy : MonoBehaviour
     void ambientFX(){
         if(Vector3.Distance(rb.velocity,Vector3.zero) > 0.2f){
             if(Time.time > stepTimer){
-                float r = UnityEngine.Random.Range(20,50);
+                float r = UnityEngine.Random.Range(50,70);
                 stepTimer = Time.time + r/100;
                 int pos = Random.Range(0,4);
                 limbs[pos].NOISE();
                 // limbs 0-3 are the legs
             }
         }
-        if(growlTimer < Time.time){
-            //limbs[4].NOISE();
-            // limbs at 4 is for ambient growling
-            growlTimer = Time.time + Random.Range(25,55);
-        }
+        // if(growlTimer < Time.time){
+        //     //limbs[4].NOISE();
+        //     // limbs at 4 is for ambient growling
+        //     growlTimer = Time.time + Random.Range(25,55);
+        // }
     }
 
     bool playerCheck(){
@@ -166,12 +164,15 @@ public class enemy : MonoBehaviour
         setRandPos(player.transform.position);
         // navigate away from player
         nav.Navigate();
-        if(screamTimer < Time.time){
+        if(Time.time > screamTimer){
             screamTimer = Time.time + 5;
             limbs[6].NOISE();
+            Debug.Log("scared");
             // limbs at 6 is for scared scream
             // when scared it makes a noise
         }
+        
+            
     }
 
     public void setRandPos(Vector2 pos){
