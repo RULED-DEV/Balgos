@@ -33,7 +33,7 @@ public class BALGOS : MonoBehaviour
         movement();
         load_manager();
         fireManager();
-        noiseManager();
+        quiter();
         steps();
         load_vis();
     }
@@ -187,7 +187,7 @@ public class BALGOS : MonoBehaviour
         // make inertial later
     }
 
-    void noiseManager(){
+    void quiter(){
         if(Input.GetKeyDown(KeyCode.Escape)){
             Application.Quit();
         }
