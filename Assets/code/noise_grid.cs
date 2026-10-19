@@ -57,6 +57,7 @@ public struct noise_grid{
 
     public void constructNavGrid(){
         int nodeCount = Mathf.RoundToInt((width/navSpacing)*(height/navSpacing));
+        nodeCount = Mathf.Clamp(nodeCount,0,1000);
         navigationGrid = new NativeArray<NavNode>(nodeCount, Allocator.Persistent);
         var jobgenerate = new InitNavJob
         {
