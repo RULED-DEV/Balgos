@@ -26,6 +26,12 @@ public class enemy : MonoBehaviour
     BALGOS player;
     public LayerMask mask;
 
+    limb[] limbs;
+    float stepTimer;
+    float growlTimer;
+    float screamTimer;
+    // scream timer controls both attack scream and fear scream
+
     // works but needs tuning
     // random idle pos should be centered to room
     // FEAR should generate a position away from the player
@@ -39,6 +45,7 @@ public class enemy : MonoBehaviour
         player = GameObject.Find("BALGOS").GetComponent<BALGOS>();
         mode = "idle";
         mediun[] meds = GetComponentsInChildren<mediun>();
+        limbs = GetComponentsInChildren<limb>();
         float add = 0.01f;
         foreach(mediun m in meds){
             m.medium_val.decay += add;
@@ -49,6 +56,7 @@ public class enemy : MonoBehaviour
 
     void Update()
     {
+        ambientFX();
         if(mode == "attack"){
             // attack logic
             if(!playerCheck()){
@@ -58,7 +66,7 @@ public class enemy : MonoBehaviour
             else{
                 // player is still seen
                 moveToPos(player.transform.position,attackMult);
-                if(Vector2.Distance(player.transform.position,transform.position) < 2){
+                if(Vector2.Distance(player.transform.position,transform.position) < 3.5){
                     player.death();
                     // player is killed
                 }
@@ -90,8 +98,31 @@ public class enemy : MonoBehaviour
             if(mode == "investigate"){
                 if(playerCheck()){
                     mode = "attack";
+                    if(screamTimer < Time.time){
+                        screamTimer = Time.time + 5;
+                        limbs[6].NOISE();
+                        // limbs at 6 is for scared scream
+                        // when entering attack mode it screams to warn the player
+                    }
                 }
             }
+        }
+    }
+
+    void ambientFX(){
+        if(Vector3.Distance(rb.velocity,Vector3.zero) > 0.2f){
+            if(Time.time > stepTimer){
+                float r = UnityEngine.Random.Range(20,50);
+                stepTimer = Time.time + r/100;
+                int pos = Random.Range(0,4);
+                limbs[pos].NOISE();
+                // limbs 0-3 are the legs
+            }
+        }
+        if(growlTimer < Time.time){
+            limbs[4].NOISE();
+            // limbs at 4 is for ambient growling
+            growlTimer = Time.time + Random.Range(25,55);
         }
     }
 
@@ -134,6 +165,12 @@ public class enemy : MonoBehaviour
         setRandPos(player.transform.position);
         // navigate away from player
         nav.Navigate();
+        if(screamTimer < Time.time){
+            screamTimer = Time.time + 5;
+            limbs[6].NOISE();
+            // limbs at 6 is for scared scream
+            // when scared it makes a noise
+        }
     }
 
     public void setRandPos(Vector2 pos){
