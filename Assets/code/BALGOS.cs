@@ -54,11 +54,11 @@ public class BALGOS : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
             if(!isbreachopen){
                 isbreachopen = true;
+                checkReload();
                 FIRE();
                 barrel_fire_point.NOISE(); // fire noise
                 bullet_EJECT.NOISE(); // bullet casing ejecting to floor
                 breach_point.NOISE(); // breach opening
-                checkReload();
             }
         }
         if(Input.GetMouseButtonDown(1) && echoT < Time.time){
@@ -165,7 +165,6 @@ public class BALGOS : MonoBehaviour
 
     public void death(){
         Application.Quit();
-        Debug.Log("i am dead");
         // player dies
     }
 
