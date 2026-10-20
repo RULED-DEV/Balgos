@@ -150,12 +150,11 @@ public class enemy : MonoBehaviour
 
     public void DETECTNOISE(){
         if(mode != "scared" && mode != "attack"){
-            if(growlTimer < Time.time){
+            if(growlTimer < Time.time && mode != "investigate"){
                 limbs[4].NOISE();
                 // limbs at 4 is detect growling
                 growlTimer = Time.time + 5;
             }
-            Debug.Log("detected");
             detect.activated = false;
             nav.tarPos = player.transform.position;
             nav.Navigate();
