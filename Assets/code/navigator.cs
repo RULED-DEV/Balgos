@@ -15,7 +15,7 @@ public class navigator : MonoBehaviour
     public Vector2 tarPos;
     mesh_manager mesh;
 
-    void Start(){
+    void Awake(){
         mesh = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0];
     }
 
@@ -74,6 +74,10 @@ public class navigator : MonoBehaviour
             if(regress){
                 // if no valid node is returned we need to go to the prior node
                 posList.RemoveAt(posList.Count-1);
+                if(posList.Count == 0){
+                    Destroy(gameObject);
+                    // removes gameobject if path is impossible
+                }
             }
         }
     }
