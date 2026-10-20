@@ -30,6 +30,8 @@ public class enemy : MonoBehaviour
     float stepTimer;
     float growlTimer;
     float screamTimer;
+
+    float attackDelay;
     // scream timer controls both attack scream and fear scream
 
     // works but needs tuning
@@ -63,10 +65,11 @@ public class enemy : MonoBehaviour
                 mode = "idle";
                 nav.posList = new List<NavNode>();
             }
-            else{
+            else if(attackDelay < Time.time){
                 // player is still seen
                 moveToPos(player.transform.position,attackMult);
-                if(Vector2.Distance(player.transform.position,transform.position) < 3.5){
+                if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 3.5){
+                    // uses the heads transform (limbs[6] is on head)
                     player.death();
                     // player is killed
                 }
@@ -98,10 +101,12 @@ public class enemy : MonoBehaviour
             if(mode == "investigate"){
                 if(playerCheck()){
                     mode = "attack";
-                        Debug.Log("scream");
-                        limbs[5].NOISE();
-                        // limbs at 6 is for scared scream
-                        // when entering attack mode it screams to warn the player
+                    Debug.Log("scream");
+                    limbs[5].NOISE();
+                    // limbs at 6 is for scared scream
+                    // when entering attack mode it screams to warn the player
+                    attackDelay = Time.time + 0.8f;
+                    // attack delay causes the enemy to pause prior to attack, giving the player time to react
                 }
             }
         }
@@ -117,11 +122,6 @@ public class enemy : MonoBehaviour
                 // limbs 0-3 are the legs
             }
         }
-        // if(growlTimer < Time.time){
-        //     //limbs[4].NOISE();
-        //     // limbs at 4 is for ambient growling
-        //     growlTimer = Time.time + Random.Range(25,55);
-        // }
     }
 
     bool playerCheck(){
@@ -150,6 +150,11 @@ public class enemy : MonoBehaviour
 
     public void DETECTNOISE(){
         if(mode != "scared" && mode != "attack"){
+            if(growlTimer < Time.time){
+                limbs[4].NOISE();
+                // limbs at 4 is detect growling
+                growlTimer = Time.time + 5;
+            }
             Debug.Log("detected");
             detect.activated = false;
             nav.tarPos = player.transform.position;
