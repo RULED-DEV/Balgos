@@ -93,7 +93,7 @@ public class enemy : MonoBehaviour
             }
             else{
                 mode = "idle";
-                setRandPos(transform.position);
+                nav.tarPos = setRandPos(transform.position);
                 // navigates in the direction of the center of the map
                 nav.Navigate();
                 // generates new pos to idle toward
@@ -165,7 +165,7 @@ public class enemy : MonoBehaviour
     public void FEAR(){
         fear.activated = false;
         mode = "scared";
-        setRandPos(player.transform.position);
+        nav.tarPos = setRandPos(player.transform.position);
         // navigate away from player
         nav.Navigate();
         if(Time.time > screamTimer){
@@ -179,7 +179,7 @@ public class enemy : MonoBehaviour
             
     }
 
-    public void setRandPos(Vector2 pos){
+    public Vector2 setRandPos(Vector2 pos){
         Vector2 output = Vector2.zero;
         while(output == Vector2.zero){
             Vector2 rand = new Vector2(Random.Range(0,50),Random.Range(0,50));
@@ -190,7 +190,7 @@ public class enemy : MonoBehaviour
                 output = n.pos;
             }
         }
-        nav.tarPos = output;
+        return output;
     }
 
     public void death(){
@@ -215,6 +215,9 @@ public class enemy : MonoBehaviour
             m.OnApplicationQuit();
             // medium is removed and activelists are disposed                        
         }
+
+        FindObjectsByType<levelManager>(FindObjectsSortMode.None)[0].removeEnemy(gameObject.GetComponent<enemy>());
+
         Destroy(gameObject);
         // need to figure out how to remove shadow
     }
