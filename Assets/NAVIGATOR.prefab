@@ -256,13 +256,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 25
+  volume: 10
   spread: 0.5
   continuity: 0
   recor: 0
   T: 0
   SFX: {fileID: 8502847189952167238}
-  sound: {fileID: 8300000, guid: c5401d1a073204b44bffc4567bfdb091, type: 3}
+  sound: {fileID: 8300000, guid: c2717dd46ec50114bb293915c6cdbdd6, type: 3}
 --- !u!1 &2802792820661054765
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,13 +519,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 25
+  volume: 10
   spread: 0.5
   continuity: 0
   recor: 0
   T: 0
   SFX: {fileID: 8502847189952167238}
-  sound: {fileID: 8300000, guid: c5401d1a073204b44bffc4567bfdb091, type: 3}
+  sound: {fileID: 8300000, guid: c2717dd46ec50114bb293915c6cdbdd6, type: 3}
 --- !u!1 &2840621755839561599
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,8 +577,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotSpeed: 2
   moveSpeed: 3
-  attackMult: 2
-  fearMult: 2
+  attackMult: 4
+  fearMult: 5
   attackRad: 10
   mode: aaa
   deathRange: 1.5
@@ -631,7 +631,7 @@ MonoBehaviour:
   ACTSTR: DETECTNOISE
   Conn: {fileID: 5020634072088368155}
   interval: 0.05
-  threshold: 30
+  threshold: 10
   activated: 0
 --- !u!114 &6761063199468290819
 MonoBehaviour:
@@ -648,7 +648,7 @@ MonoBehaviour:
   ACTSTR: FEAR
   Conn: {fileID: 5020634072088368155}
   interval: 0.05
-  threshold: 90
+  threshold: 91
   activated: 0
 --- !u!50 &944262903069216896
 Rigidbody2D:
@@ -933,13 +933,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 25
+  volume: 10
   spread: 0.5
   continuity: 0
   recor: 0
   T: 0
   SFX: {fileID: 8502847189952167238}
-  sound: {fileID: 8300000, guid: c5401d1a073204b44bffc4567bfdb091, type: 3}
+  sound: {fileID: 8300000, guid: c2717dd46ec50114bb293915c6cdbdd6, type: 3}
 --- !u!1 &4342516709494245715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,7 +1262,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 5
   MinDistance: 8
-  MaxDistance: 20
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1312,7 +1312,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.525
+      value: 0.225
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1327,7 +1327,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.19729614
+      value: 0.349
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1593,13 +1593,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 25
+  volume: 10
   spread: 0.5
   continuity: 0
   recor: 0
   T: 0
   SFX: {fileID: 8502847189952167238}
-  sound: {fileID: 8300000, guid: c5401d1a073204b44bffc4567bfdb091, type: 3}
+  sound: {fileID: 8300000, guid: c2717dd46ec50114bb293915c6cdbdd6, type: 3}
 --- !u!1 &8889202740510113880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,18 +1861,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8889202740510113880}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 49
+  volume: 50
   spread: 0
   continuity: 0
   recor: 0
   T: 0
   SFX: {fileID: 8502847189952167238}
-  sound: {fileID: 0}
+  sound: {fileID: 8300000, guid: cf14f31102df4944aaabe3196b04c7ed, type: 3}
 --- !u!114 &6431978494030015029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,7 +1891,7 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 8502847189952167238}
-  sound: {fileID: 8300000, guid: cf14f31102df4944aaabe3196b04c7ed, type: 3}
+  sound: {fileID: 8300000, guid: c99f0b694afb6d64ab7a651b162f9b21, type: 3}
 --- !u!114 &3576854880562314791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 70
+  volume: 65
   spread: 0.3
   continuity: 0
   recor: 0
