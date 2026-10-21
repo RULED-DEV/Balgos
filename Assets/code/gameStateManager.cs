@@ -47,12 +47,14 @@ public class gameStateManager : MonoBehaviour
         noiser[] n = FindObjectsByType<noiser>(FindObjectsSortMode.None);
         SoundSwitch[] s = FindObjectsByType<SoundSwitch>(FindObjectsSortMode.None);
         BALGOS[] b = FindObjectsByType<BALGOS>(FindObjectsSortMode.None);
+        enemy[] e = FindObjectsByType<enemy>(FindObjectsSortMode.None);
         mesh.grid.active = true;
 
         foreach(act_updater A in a){A.enabled = false;}
         foreach(noiser N in n){N.enabled = false;}
         foreach(SoundSwitch S in s){S.enabled = false;}
         foreach(BALGOS B in b){B.enabled = false;}
+        foreach(enemy E in e){Destroy(E.gameObject);}
 
         mat_vals MV = new mat_vals();
         MV.decay = 2;
