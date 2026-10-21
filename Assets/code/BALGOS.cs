@@ -161,8 +161,8 @@ public class BALGOS : MonoBehaviour
     }
 
     public void death(){
-        Application.Quit();
-        // player dies
+        FindObjectsByType<gameStateManager>(FindObjectsSortMode.None)[0].StopAllSources();
+        // player dies, level transitions to a new one
     }
 
     void movement(){
