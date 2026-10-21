@@ -407,50 +407,74 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5221965835254836747}
     m_Modifications:
-    - target: {fileID: 200189318091201274, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: m_Volume
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 977168042170165919, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
       propertyPath: m_Name
       value: BALGOS
       objectReference: {fileID: 0}
-    - target: {fileID: 1970288302787428854, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: medium_val.decay
-      value: 1.4
+    - target: {fileID: 1466371435106042350, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: sounds.Array.size
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2337241798483972023, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1466371435106042350, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: 'sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 68c8e475e71b2fa4ab69afef45e85148, type: 3}
+    - target: {fileID: 1715639626361764200, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: sounds.Array.size
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2829713680759644305, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: medium_val.decay
-      value: 1.4
+    - target: {fileID: 1715639626361764200, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: 'sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094043948528691707, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094043948528691707, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: 'sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e68b6518568f46d47811352d345a0bbd, type: 3}
+    - target: {fileID: 3369744827742519493, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: sounds.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3369744827742519493, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: volume
-      value: 95
+      propertyPath: 'sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 51dd6cf0bda5d2842becdac2e0ead54a, type: 3}
+    - target: {fileID: 3369744827742519493, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: 'sounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a5875fd1187d8a4fadb97ba61f01e3a, type: 3}
+    - target: {fileID: 3369744827742519493, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: 'sounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 05fb817bcf747e94fa31f3e6be584332, type: 3}
+    - target: {fileID: 3958143578332757087, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: sounds.Array.size
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3497676789367533968, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: medium_val.decay
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5088363388996922078, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: medium_val.decay
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5387059200159841669, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: medium_val.decay
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5411500954506043437, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: medium_val.decay
-      value: 1.4
+    - target: {fileID: 3958143578332757087, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: 'sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 844887c2153691b4f89d0e3ca43a45ba, type: 3}
+    - target: {fileID: 5666788251436466959, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: sounds.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5666788251436466959, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: volume
-      value: 15
-      objectReference: {fileID: 0}
+      propertyPath: 'sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e9965d87ab72251449683cf9a60e0948, type: 3}
+    - target: {fileID: 5666788251436466959, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: 'sounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a7063cb3b80c18d4cba5159e59f6f44a, type: 3}
+    - target: {fileID: 5666788251436466959, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: 'sounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 6b6cbf576bfd556439fa2bc3384bc1bb, type: 3}
     - target: {fileID: 6944449614643721184, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4
@@ -490,10 +514,6 @@ PrefabInstance:
     - target: {fileID: 6944449614643721184, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554928270765203178, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
-      propertyPath: trail_noise
-      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1623,7 +1643,7 @@ TilemapRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732592686072231934}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 0
@@ -13197,12 +13217,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnPeriod: 80
-  initEnemySpawnAmount: 4
   player: {fileID: 0}
   enemyAct: []
   enemyTemplate: {fileID: 2840621755839561599, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
   goal: []
-  goalTemplate: {fileID: 0}
+  goalTemplate: {fileID: 8730185098407417426, guid: 761c52746ad3bcd4a95852a42ceecdf0, type: 3}
 --- !u!19719996 &6507414504399917866
 TilemapCollider2D:
   m_ObjectHideFlags: 0
