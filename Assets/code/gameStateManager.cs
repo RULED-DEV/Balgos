@@ -28,6 +28,7 @@ public class gameStateManager : MonoBehaviour
             // we be transitioning
             if(mesh.grid.activeNodes.Length == 0){
                 // no noise in the world
+                removeAll();
                 if(toMenu){
                     SceneManager.LoadScene(menuScene);
                 }
@@ -42,12 +43,19 @@ public class gameStateManager : MonoBehaviour
         }
     }
 
+    void removeAll(){
+        FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0].OnApplicationQuit();
+        mediun[] m = FindObjectsByType<mediun>(FindObjectsSortMode.None);
+        foreach(mediun M in m){M.resetNodeVal();M.OnApplicationQuit();}
+    }
+
     public void StopAllSources(){
         act_updater[] a = FindObjectsByType<act_updater>(FindObjectsSortMode.None);
         noiser[] n = FindObjectsByType<noiser>(FindObjectsSortMode.None);
         SoundSwitch[] s = FindObjectsByType<SoundSwitch>(FindObjectsSortMode.None);
         BALGOS[] b = FindObjectsByType<BALGOS>(FindObjectsSortMode.None);
         enemy[] e = FindObjectsByType<enemy>(FindObjectsSortMode.None);
+        mediun[] m = FindObjectsByType<mediun>(FindObjectsSortMode.None);
         mesh.grid.active = true;
 
         foreach(act_updater A in a){A.enabled = false;}
@@ -55,23 +63,7 @@ public class gameStateManager : MonoBehaviour
         foreach(SoundSwitch S in s){S.enabled = false;}
         foreach(BALGOS B in b){B.enabled = false;}
         foreach(enemy E in e){Destroy(E.gameObject);}
-
-        mat_vals MV = new mat_vals();
-        MV.decay = 2;
-        MV.spreadRate = 1;
-        MV.spreadPerc = 1f;
-
-        var jobInit = new InitGridJob
-        {
-            NodeArr = mesh.grid.Nodes,
-            PosArr = mesh.grid.worldPositions,
-            width = Mathf.RoundToInt(mesh.grid.width/mesh.grid.spacing),
-            spacing = mesh.grid.spacing,
-            medium_val = MV,
-        };
-        JobHandle handleInit = jobInit.Schedule(mesh.grid.Nodes.Length, 512);
-        handleInit.Complete();
-        // sets every medium to a fast decay so we can load in a timely manner
+        foreach(mediun M in m){M.resetNodeVal();M.OnApplicationQuit();}
 
         transition = true;
     }
