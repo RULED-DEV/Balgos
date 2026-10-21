@@ -46,7 +46,7 @@ public class mesh_manager : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit(){
+    public void OnApplicationQuit(){
         grid.remove_grid();
         soundColors.Dispose();
         // unloads grid
