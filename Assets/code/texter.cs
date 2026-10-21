@@ -45,8 +45,8 @@ public class texter : MonoBehaviour
                 Vector2 offset = new Vector2(((3*unit) + (spacing*unit))*i,0);
 
                 GameObject g = new GameObject();
-                g.transform.position = pos+offset;
-                g.transform.localScale = Vector3.one * sizing;
+                g.transform.position = pos+(offset*size);
+                g.transform.localScale = Vector3.one * sizing * size;
 
                 SpriteRenderer s = g.AddComponent<SpriteRenderer>();
                 
