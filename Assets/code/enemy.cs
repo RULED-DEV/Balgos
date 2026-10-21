@@ -41,19 +41,21 @@ public class enemy : MonoBehaviour
 
     void Awake(){
         nav = GetComponent<navigator>();
-        detect = GetComponents<SoundSwitch>()[0];
-        fear = GetComponents<SoundSwitch>()[1];
-        rb = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("BALGOS").GetComponent<BALGOS>();
-        mode = "idle";
-        mediun[] meds = GetComponentsInChildren<mediun>();
-        limbs = GetComponentsInChildren<limb>();
-        float add = 0.01f;
-        foreach(mediun m in meds){
-            m.medium_val.decay += add;
-            add += 0.01f;
+        if(nav != null){
+            detect = GetComponents<SoundSwitch>()[0];
+            fear = GetComponents<SoundSwitch>()[1];
+            rb = GetComponent<Rigidbody2D>();
+            player = GameObject.Find("BALGOS").GetComponent<BALGOS>();
+            mode = "idle";
+            mediun[] meds = GetComponentsInChildren<mediun>();
+            limbs = GetComponentsInChildren<limb>();
+            float add = 0.01f;
+            foreach(mediun m in meds){
+                m.medium_val.decay += add;
+                add += 0.01f;
+            }
+            // autimatically differentiates the decay values, allowing mediuns to properly imprint onto the grid
         }
-        // autimatically differentiates the decay values, allowing mediuns to properly imprint onto the grid
     }
 
     void Update()
@@ -181,7 +183,7 @@ public class enemy : MonoBehaviour
 
     public Vector2 setRandPos(Vector2 pos){
         Vector2 output = Vector2.zero;
-        while(output == Vector2.zero){
+        while(output == Vector2.zero && nav != null){
             Vector2 rand = new Vector2(Random.Range(0,50),Random.Range(0,50));
             // picks random position on the map
             NavNode n = nav.nearestNode(rand);
