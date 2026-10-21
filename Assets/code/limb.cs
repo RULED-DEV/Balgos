@@ -20,7 +20,7 @@ public class limb : MonoBehaviour
     public float T; // time between bounces
     
     public AudioSource SFX;
-    public AudioClip sound;
+    public AudioClip[] sounds;
     // needs audio
 
     void Start(){
@@ -60,6 +60,6 @@ public class limb : MonoBehaviour
         if(recor > 0 && continuity){
             Invoke("noise",t);
         }
-        if(sound != null){SFX.PlayOneShot(sound);}
+        if(sounds.Length != 0){SFX.PlayOneShot(sounds[Random.Range(0,sounds.Length)]);}
     }
 }
