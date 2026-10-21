@@ -754,7 +754,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: 0
-  NEWSCENE: MENU SCENE
+  menuScene: MENU SCENE
+  transitionScene: level 1
+  levelScenes:
+  - level 2
+  goToLevel: 0
+  toMenu: 0
 --- !u!114 &632306599454275345
 MonoBehaviour:
   m_ObjectHideFlags: 0
