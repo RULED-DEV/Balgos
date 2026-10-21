@@ -161,6 +161,7 @@ public class BALGOS : MonoBehaviour
     }
 
     public void death(){
+        FindObjectsByType<gameStateManager>(FindObjectsSortMode.None)[0].toMenu = true;
         FindObjectsByType<gameStateManager>(FindObjectsSortMode.None)[0].StopAllSources();
         // player dies, level transitions to a new one
     }
