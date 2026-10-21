@@ -9,27 +9,31 @@ public class texter : MonoBehaviour
 
     string chars = "abcdefghijklmnopqrstuvwxyz,.";
 
-    // public List<char> chars = new List<char> {
-    //     'a','b','c','d','e','f','g','h','i','j','k'
-    //     ,'l','m','n','o','p','q','r','s','t','u','v'
-    //     ,'w','x','y','z',',','.'
-    // };
-    // list of accepted characters
+    public float initDelay;
+    public float decayDelay;
 
     public List<Sprite> textSpr = new List<Sprite>();
     // text sprites
 
     public mat_vals MV;
 
+    public List<mediun> textList = new List<mediun>();
+
     public void Start(){
+        INIT();
+    }
+
+    public void INIT(){
         unit = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0].grid.spacing;
         sizing = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0].s.resolution;
         sizing = 1/sizing;
         Vector2 pos = transform.position;
         pos = new Vector2(pos.x - (pos.x%unit), pos.y - (pos.y%unit));
         transform.position = pos;
-
-        TextGeneration();
+        Invoke("TextGeneration",initDelay);
+        if(decayDelay > 0){
+            Invoke("TextRemoval",decayDelay);
+        }
     }
 
     public float size;
@@ -56,12 +60,22 @@ public class texter : MonoBehaviour
                 g.AddComponent<PolygonCollider2D>();
 
                 mediun medium = g.AddComponent<mediun>();
+                textList.Add(medium);
                 medium.medium_val = MV;
                 medium.width = size;
                 medium.height = size;
 
                 s.enabled = false;
             }
+        }
+    }
+
+    public void TextRemoval(){
+        foreach(mediun m in textList){
+            m.resetNodeVal();
+            m.OnApplicationQuit();
+            Destroy(m.gameObject);
+            // removes text
         }
     }
 }
