@@ -17,6 +17,9 @@ public class levelManager : MonoBehaviour
     public List<enemy> goal = new List<enemy>(); // all alive goals
     public GameObject goalTemplate; // base template for goal enemy
 
+    int goalState; // 1 : pause, 2 : rage, 3 : silence, 4 : transition
+    float goalTimer;
+
     public void StartLevel(){
         player = GameObject.Find("BALGOS").GetComponent<BALGOS>();
         // retrieves player
@@ -45,13 +48,36 @@ public class levelManager : MonoBehaviour
 
     void Update()
     {
-        while(spawnTimer < Time.time){
+        if(spawnTimer < Time.time){
             spawnTimer = Time.time + enemySpawnPeriod;
             enemyAct.Add(Instantiate(enemyTemplate,transform.position,transform.rotation).GetComponent<enemy>());
             // spawns enemy and adds it to the list
 
             enemyAct[enemyAct.Count-1].transform.position = enemyAct[enemyAct.Count-1].setRandPos(player.transform.position);
             // enemy is set to a valid position that is away from the player
+        }
+        if(goalState != 0){
+            // all goal enemies dead, initiate leaving level
+            if(goalTimer < Time.time){
+                goalState ++ ; // goes to next state
+                if(goalState == 2){ // rage, all anemies attack player
+                    // rage state lasts longer
+                    goalTimer = Time.time + 20;
+                    spawnTimer = 0;
+                    enemySpawnPeriod = 10;
+                    // faster spawns
+                    foreach(enemy e in enemyAct){e.enraged = true;}
+                }
+                if(goalState == 3){ // silence, all enemies dissapear
+                    goalTimer = Time.time + 10;
+                    foreach(enemy e in enemyAct){
+                        removeEnemy(e);
+                    }
+                }
+                if(goalState == 4){ // transition is triggered
+                    gameObject.GetComponent<gameStateManager>().StopAllSources();
+                } 
+            }
         }
     }
 
@@ -63,8 +89,8 @@ public class levelManager : MonoBehaviour
         if(ind >= 0){goal.RemoveAt(ind);}
         Destroy(E.gameObject);
         if(goal.Count == 0){
-            // victory achieved move to next level
-            Debug.Log("VICROTY");
+            goalState = 1; // pause
+            goalTimer = Time.time + 10;
         }
     }
 }
