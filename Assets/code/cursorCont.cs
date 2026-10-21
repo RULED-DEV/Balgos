@@ -40,6 +40,7 @@ public class cursorCont : MonoBehaviour
             else{
                 float Noise = Vector3.Distance(mousePosition,savPos)/2.4f;
                 Noise = Noise*moveNoise;
+                Noise = Mathf.Clamp(Noise,0,90);
                 mesh.grid.editnodeval(mesh.grid.pos_to_ind(mousePosition),Noise);
             }
         }
