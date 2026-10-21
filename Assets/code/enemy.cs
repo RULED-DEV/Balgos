@@ -34,12 +34,12 @@ public class enemy : MonoBehaviour
     float attackDelay;
     // scream timer controls both attack scream and fear scream
 
-    // works but needs tuning
-    // random idle pos should be centered to room
-    // FEAR should generate a position away from the player
-    // need to impliment SFX
+    public bool enraged;
+    // makes enemy always detect player
 
     void Awake(){
+        if(enraged){DETECTNOISE();}
+        // makes enemy track player
         nav = GetComponent<navigator>();
         if(nav != null){
             detect = GetComponents<SoundSwitch>()[0];
@@ -70,7 +70,7 @@ public class enemy : MonoBehaviour
             else if(attackDelay < Time.time){
                 // player is still seen
                 moveToPos(player.transform.position,attackMult);
-                if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 3.5){
+                if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 4){
                     // uses the heads transform (limbs[6] is on head)
                     player.death();
                     // player is killed
