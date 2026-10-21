@@ -471,7 +471,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: 0
-  NEWSCENE: level 1
+  menuScene: MENU SCENE
+  transitionScene: transition scene
+  levelScenes:
+  - level 2
+  goToLevel: 0
+  toMenu: 0
 --- !u!213 &1362560536
 Sprite:
   m_ObjectHideFlags: 0
@@ -754,6 +759,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+      propertyPath: s
+      value: 
+      objectReference: {fileID: 1139781883652476698}
+    - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: air.decay
       value: 3
       objectReference: {fileID: 0}
@@ -996,7 +1005,47 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3225684245942242740, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1360949439}
+    - targetCorrespondingSourceObject: {fileID: 8472490983946961794, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1139781883652476698}
   m_SourcePrefab: {fileID: 100100000, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+--- !u!1 &1139781883652476697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8472490983946961794, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+  m_PrefabInstance: {fileID: 1139781883652476696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1139781883652476698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139781883652476697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0ae0992c95e0f408fc26ce1fc26b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 28
+  height: 16
+  resolution: 0.125
+  coloursequence:
+  - col:
+      serializedVersion: 2
+      rgba: 4280096278
+    max: 0
+  - col:
+      serializedVersion: 2
+      rgba: 4282006074
+    max: 50
+  - col:
+      serializedVersion: 2
+      rgba: 4279835080
+    max: 90
+  - col:
+      serializedVersion: 2
+      rgba: 4288651174
+    max: 100
 --- !u!1001 &4394298093980826559
 PrefabInstance:
   m_ObjectHideFlags: 0

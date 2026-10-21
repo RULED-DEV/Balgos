@@ -755,7 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: 0
   menuScene: MENU SCENE
-  transitionScene: level 1
+  transitionScene: transition scene
   levelScenes:
   - level 2
   goToLevel: 0
