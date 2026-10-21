@@ -57,7 +57,6 @@ public class BALGOS : MonoBehaviour
                 checkReload();
                 FIRE();
                 barrel_fire_point.NOISE(); // fire noise
-                bullet_EJECT.NOISE(); // bullet casing ejecting to floor
                 breach_point.NOISE(); // breach opening
             }
         }
@@ -95,8 +94,6 @@ public class BALGOS : MonoBehaviour
 
     public limb bullet_LOAD;
     // point where bullet is loaded/ejected
-    public limb bullet_EJECT;
-    // fumbles bullet
     public limb barrel_fire_point;
     // where bullet is fired
     public limb echolocate_point;
