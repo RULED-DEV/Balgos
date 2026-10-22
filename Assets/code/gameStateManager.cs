@@ -67,4 +67,6 @@ public class gameStateManager : MonoBehaviour
 
         transition = true;
     }
+
+    public void QUIT(){Application.Quit();}
 }
