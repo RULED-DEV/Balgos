@@ -29,7 +29,7 @@ public class cursorCont : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = cam.ScreenToWorldPoint(mousePosition);
         mousePosition = new Vector3(mousePosition.x,mousePosition.y,0);
-        //if(mousePosition.x > 0 && mousePosition.y > 0){
+        if(mousePosition.x > 0 && mousePosition.y > 0){
             if(Input.GetMouseButtonDown(0)){
                 mesh.grid.editnodeval(mesh.grid.pos_to_ind(mousePosition),clickNoise);
             }
@@ -40,10 +40,10 @@ public class cursorCont : MonoBehaviour
             else{
                 float Noise = Vector3.Distance(mousePosition,savPos)/2.4f;
                 Noise = Noise*moveNoise;
-                Noise = Mathf.Clamp(Noise,0,60);
+                Noise = Mathf.Clamp(Noise,0,70);
                 mesh.grid.editnodeval(mesh.grid.pos_to_ind(mousePosition),Noise);
             }
-        //}
+        }
         savPos = mousePosition;
     }
 }
