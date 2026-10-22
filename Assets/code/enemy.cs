@@ -197,7 +197,6 @@ public class enemy : MonoBehaviour
 
     public void death(){
         mediun[] meds = GetComponentsInChildren<mediun>();
-        float add = 0.01f;
         foreach(mediun m in meds){
             Vector3 pos = new Vector3(Random.Range(-deathRange*10,deathRange*10),Random.Range(-deathRange*10,deathRange*10),0);
             pos = pos * 0.1f;
