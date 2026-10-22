@@ -123,10 +123,12 @@ public struct noise_grid{
     public void editnodeval(int pos, float val){
         //decibels[pos] = val;
         if(!active){
-            mat_vals temp = Nodes[pos];
-            temp.decibels = val;
-            Nodes[pos] = temp;
-            activeNodes.Add(pos);
+            if(Nodes[pos].decibels < val){
+                mat_vals temp = Nodes[pos];
+                temp.decibels = val;
+                Nodes[pos] = temp;
+                activeNodes.Add(pos);
+            }
         }
     }
 
