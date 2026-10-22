@@ -33,7 +33,7 @@ public class BALGOS : MonoBehaviour
         movement();
         load_manager();
         fireManager();
-        quiter();
+        suicide();
         steps();
         load_vis();
     }
@@ -184,9 +184,15 @@ public class BALGOS : MonoBehaviour
         // make inertial later
     }
 
-    void quiter(){
+    void suicide(){
         if(Input.GetKeyDown(KeyCode.Escape)){
-            Application.Quit();
+            enemy[] E = FindObjectsByType<enemy>(FindObjectsSortMode.None);
+            foreach(enemy e in E){e.enraged = true;}
         }
+        if(Input.GetKeyUp(KeyCode.Escape)){
+            enemy[] E = FindObjectsByType<enemy>(FindObjectsSortMode.None);
+            foreach(enemy e in E){e.enraged = false;}
+        }
+        // enrages all enemies on map so player can die, leading to menu where they can quit
     }
 }
