@@ -138,6 +138,9 @@ public class enemy : MonoBehaviour
     }
 
     void moveToPos(Vector2 pos,float mult){
+        if(enraged){
+            mult = mult*4;
+        }
         Vector2 dir = pos-(Vector2)transform.position;
         // vector pointing in direction of pos
 
