@@ -350,17 +350,26 @@ public struct DecibelsToColorJob : IJobParallelFor
         Color32 tarcol = colranks[0].col;
         Color32 orgcol = basecol;
         int i = 0;
-        while(NodeArr[ind].decibels >= maxcolval && i+1 < colranks.Length){
-            mincolval = colranks[i].max;
-            orgcol = colranks[i].col;
-            i++;
-            maxcolval = colranks[i].max;
-            tarcol = colranks[i].col;
+        if(ind > 0){
+            while(NodeArr[ind].decibels >= maxcolval && i+1 < colranks.Length){
+                mincolval = colranks[i].max;
+                orgcol = colranks[i].col;
+                i++;
+                maxcolval = colranks[i].max;
+                tarcol = colranks[i].col;
+            }
+            float t = math.saturate((NodeArr[ind].decibels-mincolval) / (maxcolval-mincolval));
+            colors[index] = Color32.Lerp(orgcol, tarcol, t);
+            // handles colours
         }
+        else{
+            // when rendering out of bounds area, renders default colour
+            colors[index] = colranks[0].col;
+        }
+        
 
-        float t = math.saturate((NodeArr[ind].decibels-mincolval) / (maxcolval-mincolval));
-        colors[index] = Color32.Lerp(orgcol, tarcol, t);
-        // handles colours
+        
+        
     }
 
     public int job_pti(Vector2 pos){
