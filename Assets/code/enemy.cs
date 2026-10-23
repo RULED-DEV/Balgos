@@ -112,6 +112,12 @@ public class enemy : MonoBehaviour
                 }
             }
         }
+        if(mode == "idle"){
+            if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 6){
+                DETECTNOISE();
+                // if enemy is close to player and idling they investigate
+            }
+        }
     }
 
     void ambientFX(){
