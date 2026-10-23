@@ -681,6 +681,11 @@ MonoBehaviour:
   transitionScene: transition scene
   levelScenes:
   - level 2
+  - level 3
+  - level 4
+  - level 5
+  - level 6
+  - level 7
   goToLevel: 1
   toMenu: 0
 --- !u!213 &1362560536

@@ -671,7 +671,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.46913582, y: 0.66358024}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -1549,7 +1549,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: 0
-  NEWSCENE: MENU SCENE
+  menuScene: 
+  transitionScene: 
+  levelScenes: []
+  goToLevel: 0
+  toMenu: 0
 --- !u!1001 &1504064916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1914,6 +1918,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: shoot the text
+  initDelay: 0
+  decayDelay: 0
   textSpr:
   - {fileID: 1388467262, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
   - {fileID: 152123870, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
@@ -1949,6 +1955,7 @@ MonoBehaviour:
     spreadRate: 1
     spreadPerc: 1
     spreadExclusive: 0.4
+  textList: []
   size: 1
   spacing: 1
 --- !u!114 &2034465832
@@ -2091,7 +2098,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.2}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
