@@ -117,7 +117,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -383,7 +383,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -583,21 +583,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotSpeed: 2
   moveSpeed: 3
-  attackMult: 4
+  attackMult: 1.8
   fearMult: 5
   attackRad: 10
   mode: aaa
-  deathRange: 1.5
-  deathRot: 90
-  deathMat:
-    decibels: 0
-    decay: 3
-    spreadRate: 1
-    spreadPerc: 0.5
-    spreadExclusive: 0.5
   mask:
     serializedVersion: 2
     m_Bits: 192
+  enraged: 0
 --- !u!114 &72904296883714313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,7 +793,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1072,7 +1065,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1229,7 +1222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d72c9f5cadea24a88be079a5e2022b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refresh_timer: 0.1
+  refresh_timer: 0.02
 --- !u!114 &681462095797110330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1260,11 +1253,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 92fb760b84d8cbc4d82a2f014abf5082, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1463,7 +1456,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1731,7 +1724,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
