@@ -31,13 +31,16 @@ public class BALGOS : MonoBehaviour
         // makes noise on spawining to let player know game is ready
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        movement();
         load_manager();
         fireManager();
         suicide();
         steps();
+    }
+
+    void FixedUpdate(){
+        movement();
         load_vis();
     }
 
@@ -54,7 +57,7 @@ public class BALGOS : MonoBehaviour
     float echoT;
 
     void fireManager(){
-        if(Input.GetMouseButtonDown(0)){
+        if(Input.GetMouseButton(0)){
             if(!isbreachopen){
                 isbreachopen = true;
                 checkReload();
@@ -63,7 +66,7 @@ public class BALGOS : MonoBehaviour
                 breach_point.NOISE(); // breach opening
             }
         }
-        if(Input.GetMouseButtonDown(1) && echoT < Time.time){
+        if(Input.GetMouseButton(1) && echoT < Time.time){
             // echolocate
             checkReload();
             echoT = Time.time + 1.5f;
@@ -190,11 +193,11 @@ public class BALGOS : MonoBehaviour
     void suicide(){
         if(Input.GetKeyDown(KeyCode.Escape)){
             enemy[] E = FindObjectsByType<enemy>(FindObjectsSortMode.None);
-            foreach(enemy e in E){e.enraged = true;}
+            foreach(enemy e in E){e.enraged = true;e.GetComponentInChildren<AudioSource>().Play();}
         }
         if(Input.GetKeyUp(KeyCode.Escape)){
             enemy[] E = FindObjectsByType<enemy>(FindObjectsSortMode.None);
-            foreach(enemy e in E){e.enraged = false;}
+            foreach(enemy e in E){e.enraged = false;e.GetComponentInChildren<AudioSource>().Stop();}
         }
         // enrages all enemies on map so player can die, leading to menu where they can quit
     }
