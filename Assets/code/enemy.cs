@@ -14,11 +14,6 @@ public class enemy : MonoBehaviour
 
     public string mode = "idle";
 
-    public float deathRange;
-    public float deathRot;
-    public mat_vals deathMat;
-    // when we die how far away are the body parts allowed to move
-    
     navigator nav;
     SoundSwitch detect;
     SoundSwitch fear;
@@ -38,7 +33,6 @@ public class enemy : MonoBehaviour
     // makes enemy always detect player
 
     void Awake(){
-        if(enraged){DETECTNOISE();}
         // makes enemy track player
         nav = GetComponent<navigator>();
         if(nav != null){
@@ -60,17 +54,18 @@ public class enemy : MonoBehaviour
 
     void Update()
     {
+        if(enraged){DETECTNOISE(); mode = "attack";}
         ambientFX();
         if(mode == "attack"){
             // attack logic
-            if(!playerCheck()){
-                mode = "idle";
-                nav.posList = new List<NavNode>();
-            }
-            else if(attackDelay < Time.time){
-                // player is still seen
+            if(attackDelay < Time.time){
                 moveToPos(player.transform.position,attackMult);
-                if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 4){
+                if(!playerCheck()){
+                    mode = "idle";
+                    nav.posList = new List<NavNode>();
+                    // player is out of sight, revert to idle
+                }
+                if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 1){
                     // uses the heads transform (limbs[6] is on head)
                     player.death();
                     // player is killed
@@ -121,10 +116,14 @@ public class enemy : MonoBehaviour
     }
 
     void ambientFX(){
-        if(Vector3.Distance(rb.velocity,Vector3.zero) > 0.2f){
+        if(Vector3.Distance(rb.velocity,Vector3.zero) > 0.05f){
             if(Time.time > stepTimer){
                 float r = UnityEngine.Random.Range(50,70);
                 stepTimer = Time.time + r/100;
+                if(mode == "attack"){
+                    stepTimer = Time.time + r/50;
+                    // doubles step speed when attacking
+                }
                 int pos = Random.Range(0,4);
                 limbs[pos].NOISE();
                 // limbs 0-3 are the legs
@@ -144,9 +143,6 @@ public class enemy : MonoBehaviour
     }
 
     void moveToPos(Vector2 pos,float mult){
-        if(enraged){
-            mult = mult*4;
-        }
         Vector2 dir = pos-(Vector2)transform.position;
         // vector pointing in direction of pos
 
@@ -207,20 +203,6 @@ public class enemy : MonoBehaviour
     public void death(){
         mediun[] meds = GetComponentsInChildren<mediun>();
         foreach(mediun m in meds){
-            Vector3 pos = new Vector3(Random.Range(-deathRange*10,deathRange*10),Random.Range(-deathRange*10,deathRange*10),0);
-            pos = pos * 0.1f;
-            float rot = Random.Range(-deathRot,deathRot);
-            // sets a random rot and pos
-            
-            m.transform.position += pos;
-            m.transform.eulerAngles += new Vector3(0,0,rot);
-            // position of medium is changed
-
-            // m.medium_val = deathMat;
-            // m.medium_val.decay += add;
-            // add += 0.01f;
-            // medium doesnt like having its medium_val changed
-            
             m.resetNodeVal();
             m.OnApplicationQuit();
             // medium is removed and activelists are disposed                        
