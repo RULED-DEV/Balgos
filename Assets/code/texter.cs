@@ -58,7 +58,8 @@ public class texter : MonoBehaviour
                 int ind = chars.IndexOf(text[i]);
                 s.sprite = textSpr[ind];
 
-                g.AddComponent<PolygonCollider2D>();
+                PolygonCollider2D p = g.AddComponent<PolygonCollider2D>();
+                p.isTrigger = true;
 
                 mediun medium = g.AddComponent<mediun>();
                 textList.Add(medium);
