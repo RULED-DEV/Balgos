@@ -479,6 +479,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BALGOS
       objectReference: {fileID: 0}
+    - target: {fileID: 2829713680759644305, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: medium_val.spreadExclusive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088363388996922078, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: medium_val.spreadExclusive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387059200159841669, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: medium_val.spreadExclusive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411500954506043437, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
+      propertyPath: medium_val.spreadExclusive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6944449614643721184, guid: de757c249b819ee4188a84f4a0a1c762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.7

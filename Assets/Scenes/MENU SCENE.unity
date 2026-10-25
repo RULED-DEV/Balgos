@@ -641,7 +641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2948699502993121021, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
       propertyPath: text
-      value: options.
+      value: options
       objectReference: {fileID: 0}
     - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1024,75 +1024,6 @@ MonoBehaviour:
   ACTSTR: options scene
   Conn: {fileID: 0}
   levelTransition: 0
---- !u!1001 &1524704870
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 839968500420277686, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_Name
-      value: text pref (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2948699502993121021, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2948699502993121021, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: text
-      value: by ruled,
-      objectReference: {fileID: 0}
-    - target: {fileID: 2948699502993121021, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: MV.spreadExclusive
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.06044197
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
 --- !u!1 &1631643567 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 839968500420277686, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
@@ -1158,7 +1089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2948699502993121021, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
       propertyPath: text
-      value: tutorial.
+      value: tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 8898529194319682356, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1642,7 +1573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2948699502993121021, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
       propertyPath: text
-      value: start.
+      value: start
       objectReference: {fileID: 0}
     - target: {fileID: 2948699502993121021, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
       propertyPath: MV.spreadExclusive
@@ -1705,7 +1636,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1139781883652476696}
   - {fileID: 4394298093980826559}
-  - {fileID: 1524704870}
   - {fileID: 1819358524}
   - {fileID: 1221197129}
   - {fileID: 1208681237}

@@ -424,7 +424,7 @@ MonoBehaviour:
   - the future is bright
   - good things are here
   - be well.
-  MaxTime: 10
+  MaxTime: 0
 --- !u!4 &245806321
 Transform:
   m_ObjectHideFlags: 0

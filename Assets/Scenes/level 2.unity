@@ -777,7 +777,7 @@ MonoBehaviour:
     decay: 0.6
     spreadRate: 7
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 0.8
   width: -1
   height: -1
 --- !u!1 &732592686072231934
@@ -1608,6 +1608,7 @@ MonoBehaviour:
     width: 50
     height: 50
     spacing: 0
+    TestSpreadSpeed: 1
     navSpacing: 2
     navCheckSize: 1.5
     navThreshold: 5
@@ -13227,6 +13228,7 @@ MonoBehaviour:
   enemyTemplate: {fileID: 2840621755839561599, guid: 68a23e2f26ac03c419b5d936ae15e728, type: 3}
   goal: []
   goalTemplate: {fileID: 8730185098407417426, guid: 761c52746ad3bcd4a95852a42ceecdf0, type: 3}
+  goalState: 0
 --- !u!19719996 &6507414504399917866
 TilemapCollider2D:
   m_ObjectHideFlags: 0
