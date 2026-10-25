@@ -212,24 +212,18 @@ public struct spreadJob : IJobParallelFor
     [ReadOnly] public int width;
     [ReadOnly] public int frame;
 
+    public int spreadSize;
+
     public NativeStream.Writer writer;
 
     public void Execute(int index){
+        int t = 1;
         writer.BeginForEachIndex(index);
         int nodeIND = activeNodes[index];
 
         if(frame % (NodeArr[nodeIND].spreadRate - (NodeArr[nodeIND].spreadRate%1)) == 0){
             // writes to adgacent neighbours
-            checkNeighbours(nodeIND + 1,nodeIND);
-            checkNeighbours(nodeIND - 1,nodeIND);
-            checkNeighbours(nodeIND + width,nodeIND);
-
-            checkNeighbours(nodeIND + (width*2) + 2,nodeIND);
-            checkNeighbours(nodeIND + (width*2) - 2,nodeIND);
-
-            checkNeighbours(nodeIND - width,nodeIND);
-            checkNeighbours(nodeIND - (width*2) + 2,nodeIND);
-            checkNeighbours(nodeIND - (width*2) - 2,nodeIND);
+            checkPattern(nodeIND,t);
         }
 
         // decays current node
@@ -239,8 +233,28 @@ public struct spreadJob : IJobParallelFor
 
         writer.EndForEachIndex();
     }
- 
-    void checkNeighbours(int neighborIndex, int nodeIND){
+
+    void checkPattern(int nodeIND, int spread){
+        checkNeighbours(nodeIND + 1,nodeIND,0);
+        checkNeighbours(nodeIND - 1,nodeIND,0);
+        checkNeighbours(nodeIND + width,nodeIND,0);
+        checkNeighbours(nodeIND - width,nodeIND,0);
+
+        checkNeighbours(nodeIND + (width*2) + 2,nodeIND,spread);
+        checkNeighbours(nodeIND + (width*2) - 2,nodeIND,spread);
+
+        checkNeighbours(nodeIND - (width*2) + 2,nodeIND,spread);
+        checkNeighbours(nodeIND - (width*2) - 2,nodeIND,spread);
+
+        checkNeighbours(nodeIND + (width*3) + 3,nodeIND,spread);
+        checkNeighbours(nodeIND + (width*3) - 3,nodeIND,spread);
+
+        checkNeighbours(nodeIND - (width*3) + 3,nodeIND,spread);
+        checkNeighbours(nodeIND - (width*3) - 3,nodeIND,spread);
+        spread--;
+    }
+
+    void checkNeighbours(int neighborIndex, int nodeIND,int spread){
         bool indCHK = neighborIndex > 0 && neighborIndex < NodeArr.Length;
         bool valCHK = false;
         if(indCHK){
@@ -256,13 +270,17 @@ public struct spreadJob : IJobParallelFor
                 // standard spread value, each spread decays by the decay amount multiplied by spread percentage
 
                 if(NodeArr[nodeIND].spreadExclusive != NodeArr[neighborIndex].spreadExclusive){
-                    decVAL = NodeArr[nodeIND].decibels*NodeArr[nodeIND].spreadExclusive; 
+                    decVAL = NodeArr[nodeIND].decibels-(NodeArr[nodeIND].decay*NodeArr[nodeIND].spreadExclusive);
                     // when going between mediums we use the exclusive spread value
                     // its exclusive because only a few mediums will make use of it
                 }                
 
                 writer.Write(new NodeUpdate {index = neighborIndex, value = decVAL});
             }
+        }
+        if(spread > 0){
+            //checkPattern(nodeIND,spread);
+            // if we still have spread we do another check
         }
     }
 }
