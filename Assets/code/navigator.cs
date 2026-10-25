@@ -75,7 +75,9 @@ public class navigator : MonoBehaviour
                 // if no valid node is returned we need to go to the prior node
                 posList.RemoveAt(posList.Count-1);
                 if(posList.Count == 0){
-                    Destroy(gameObject);
+                    MaxLoop = 201;
+                    posList = new List<NavNode>();
+                    Debug.Log("failed to navigate");
                     // removes gameobject if path is impossible
                 }
             }
