@@ -35,6 +35,16 @@ public struct NavNode{
 }
 
 [System.Serializable]
+public struct TutorialComm{
+    public string text;
+    // text/command
+    public string cond;
+    // the condition to fufill
+    public float val;
+    // misc magnitude
+}
+
+[System.Serializable]
 public struct col_rank{
     // used to handle colour display by values
     public Color32 col;
