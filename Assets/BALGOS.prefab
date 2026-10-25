@@ -210,7 +210,7 @@ MonoBehaviour:
     decay: 1.4
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 0.51
   width: 2
   height: 3
 --- !u!1 &406953133268851739
@@ -263,7 +263,7 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sound: {fileID: 8300000, guid: 844887c2153691b4f89d0e3ca43a45ba, type: 3}
+  sounds: []
 --- !u!1 &977168042170165919
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   speed: 4
-  rotSPEED: 1
+  rotSPEED: 2
   reloadDist: 5.5
   trail_noise: 120
   isbreachopen: 0
@@ -614,7 +614,7 @@ MonoBehaviour:
     decay: 1.4
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 0.51
   width: 2
   height: 3
 --- !u!1 &4868983961669997874
@@ -670,7 +670,7 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sound: {fileID: 8300000, guid: 5ceaf5ef11ddb0343b880c1642352162, type: 3}
+  sounds: []
 --- !u!60 &6110505407766610588
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -796,7 +796,7 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sound: {fileID: 8300000, guid: e68b6518568f46d47811352d345a0bbd, type: 3}
+  sounds: []
 --- !u!1 &6414585920530231196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,7 +1233,7 @@ MonoBehaviour:
     decay: 1.4
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 0.51
   width: 2
   height: 3
 --- !u!1 &7970454897540299022
@@ -1408,7 +1408,7 @@ MonoBehaviour:
     decay: 1.4
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 0.51
   width: 2
   height: 3
 --- !u!1 &8273206509576801275
@@ -1463,7 +1463,7 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sound: {fileID: 8300000, guid: 68c8e475e71b2fa4ab69afef45e85148, type: 3}
+  sounds: []
 --- !u!60 &6654807598986201278
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sound: {fileID: 8300000, guid: 2cd5022b1fc82aa43a6b7b37690d46f5, type: 3}
+  sounds: []
 --- !u!1 &8336542921915928885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,4 +1638,4 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sound: {fileID: 8300000, guid: 51dd6cf0bda5d2842becdac2e0ead54a, type: 3}
+  sounds: []
