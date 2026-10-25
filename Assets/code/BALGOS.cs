@@ -26,6 +26,9 @@ public class BALGOS : MonoBehaviour
         }
         rb = GetComponent<Rigidbody2D>();
         mesh = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0];
+        FOOT.NOISE();
+        FOOT.NOISE();
+        // makes noise on spawining to let player know game is ready
     }
 
     void FixedUpdate()
