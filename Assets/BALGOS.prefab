@@ -316,8 +316,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   speed: 4
-  rotSPEED: 2
-  reloadDist: 5.5
+  rotSPEED: 4
+  reloadDist: 7.2
   trail_noise: 120
   isbreachopen: 0
   isleveropen: 0
