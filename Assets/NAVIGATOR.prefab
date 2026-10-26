@@ -1223,6 +1223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refresh_timer: 0.02
+  spite: 1
 --- !u!114 &681462095797110330
 MonoBehaviour:
   m_ObjectHideFlags: 0

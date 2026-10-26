@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4607592140558400461}
   - component: {fileID: 9037081290179063408}
   - component: {fileID: 2934025883448678835}
+  - component: {fileID: 6629236904364065000}
   m_Layer: 8
   m_Name: body
   m_TagString: Untagged
@@ -266,6 +267,20 @@ PolygonCollider2D:
       - {x: 0.24640343, y: -0.048477612}
       - {x: 0.31208605, y: 0.01615581}
   m_UseDelaunayMesh: 0
+--- !u!114 &6629236904364065000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5294802807288768207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d72c9f5cadea24a88be079a5e2022b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refresh_timer: 5
+  spite: 1
 --- !u!1 &8730185098407417426
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,17 +333,10 @@ MonoBehaviour:
   fearMult: 0
   attackRad: 0
   mode: 0
-  deathRange: 0
-  deathRot: 0
-  deathMat:
-    decibels: 0
-    decay: 0
-    spreadRate: 0
-    spreadPerc: 0
-    spreadExclusive: 0
   mask:
     serializedVersion: 2
     m_Bits: 192
+  enraged: 0
 --- !u!114 &-113391382939022201
 MonoBehaviour:
   m_ObjectHideFlags: 0
