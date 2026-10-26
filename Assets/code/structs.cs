@@ -36,8 +36,8 @@ public struct NavNode{
 
 [System.Serializable]
 public struct TutorialComm{
-    public string text;
-    // text/command
+    public string comm;
+    // the command
     public string cond;
     // the condition to fufill
     public float val;
