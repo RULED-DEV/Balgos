@@ -8,7 +8,6 @@ public class levelManager : MonoBehaviour
     public float enemySpawnPeriod; // how frequently enemies should spawn
     float spawnTimer;
 
-
     public BALGOS player;
 
     public List<enemy> enemyAct = new List<enemy>(); // all enemies on the field
@@ -39,7 +38,7 @@ public class levelManager : MonoBehaviour
         for(int i = 0; i < initGoalSpawnAmount; i++){
             goal.Add(Instantiate(goalTemplate,transform.position,transform.rotation).GetComponent<enemy>());
             // spawns enemy and adds it to the list
-
+            
             goal[goal.Count-1].transform.position = goal[goal.Count-1].setRandPos(player.transform.position);
             // enemy is set to a valid position that is away from the player
         }
@@ -48,18 +47,21 @@ public class levelManager : MonoBehaviour
 
     void Update()
     {
-        if(spawnTimer < Time.time){
-            spawnTimer = Time.time + enemySpawnPeriod;
-            enemyAct.Add(Instantiate(enemyTemplate,transform.position,transform.rotation).GetComponent<enemy>());
-            // spawns enemy and adds it to the list
+        if(player != null){
+            // means StartLevel hasnt been called
+            if(spawnTimer < Time.time){
+                spawnTimer = Time.time + enemySpawnPeriod;
+                enemyAct.Add(Instantiate(enemyTemplate,transform.position,transform.rotation).GetComponent<enemy>());
+                // spawns enemy and adds it to the list
 
-            enemyAct[enemyAct.Count-1].transform.position = enemyAct[enemyAct.Count-1].setRandPos(player.transform.position);
-            // enemy is set to a valid position that is away from the player
-        }
-        if(goalState != 0){
-            // all goal enemies dead, initiate leaving level
-            if(goalTimer < Time.time){
-                gameObject.GetComponent<gameStateManager>().StopAllSources();
+                enemyAct[enemyAct.Count-1].transform.position = enemyAct[enemyAct.Count-1].setRandPos(player.transform.position);
+                // enemy is set to a valid position that is away from the player
+            }
+            if(goalState != 0){
+                // all goal enemies dead, initiate leaving level
+                if(goalTimer < Time.time){
+                    gameObject.GetComponent<gameStateManager>().StopAllSources();
+                }
             }
         }
     }
