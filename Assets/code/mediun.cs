@@ -18,6 +18,11 @@ public class mediun : MonoBehaviour
     public float width, height;
 
     public void Start(){
+        Invoke("INIT",Time.deltaTime);
+        // waits 1 frame
+    }
+
+    public void INIT(){
         mesh = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0];
         col = GetComponent<Collider2D>();
         shadow = new NativeList<float2>(Allocator.Persistent);
@@ -26,7 +31,9 @@ public class mediun : MonoBehaviour
         if(width < 0){
             // this triggers only for the map medium
             mesh.grid.constructNavGrid();
-            FindObjectsByType<levelManager>(FindObjectsSortMode.None)[0].StartLevel();
+            if(FindObjectsByType<levelManager>(FindObjectsSortMode.None)[0] != null){
+                FindObjectsByType<levelManager>(FindObjectsSortMode.None)[0].StartLevel();
+            }
             // generates navmesh and then starts the level (spawning enemies)
         }
     }
@@ -39,40 +46,42 @@ public class mediun : MonoBehaviour
     }
 
     void updateNodeVal(){
-        var stream = new NativeStream(shadow.Length, Allocator.TempJob);
+        if(shadow.IsCreated){
+            var stream = new NativeStream(shadow.Length, Allocator.TempJob);
 
-        NativeList<int> SavPos = new NativeList<int>(Allocator.Persistent);
+            NativeList<int> SavPos = new NativeList<int>(Allocator.Persistent);
 
-        float2x2 rotation = float2x2.Rotate(math.radians(transform.eulerAngles.z-180));
-        // due to how shadow is generated its technically upside down
-        // subtracting 180 garuntees rotation flips it right side up
+            float2x2 rotation = float2x2.Rotate(math.radians(transform.eulerAngles.z-180));
+            // due to how shadow is generated its technically upside down
+            // subtracting 180 garuntees rotation flips it right side up
 
-        var jobCheck = new MediumCheckJob
-        {
-            NodeArr = mesh.grid.Nodes,
-            writer = stream.AsWriter(),
-            PosArr = shadow,
-            pos = (float2)(Vector2)transform.position,
-            rot = rotation,
-            medium_val = medium_val,
-            base_val = mesh.air,
-            width = mesh.grid.width,
-            spacing = mesh.grid.spacing,
-        };
-        JobHandle handleCheck = jobCheck.Schedule(shadow.Length, 512);
+            var jobCheck = new MediumCheckJob
+            {
+                NodeArr = mesh.grid.Nodes,
+                writer = stream.AsWriter(),
+                PosArr = shadow,
+                pos = (float2)(Vector2)transform.position,
+                rot = rotation,
+                medium_val = medium_val,
+                base_val = mesh.air,
+                width = mesh.grid.width,
+                spacing = mesh.grid.spacing,
+            };
+            JobHandle handleCheck = jobCheck.Schedule(shadow.Length, 512);
 
-        var jobAssign = new MediumAssignJob
-        {
-            reader = stream.AsReader(),
-            NodeArr = mesh.grid.Nodes,
-            Sav = SavPos,
-            foreachCount = shadow.Length,
-        };
-        JobHandle handleAssign = jobAssign.Schedule(handleCheck); 
-        
-        handleAssign.Complete();
-        stream.Dispose();
-        ActPos = SavPos;
+            var jobAssign = new MediumAssignJob
+            {
+                reader = stream.AsReader(),
+                NodeArr = mesh.grid.Nodes,
+                Sav = SavPos,
+                foreachCount = shadow.Length,
+            };
+            JobHandle handleAssign = jobAssign.Schedule(handleCheck); 
+            
+            handleAssign.Complete();
+            stream.Dispose();
+            ActPos = SavPos;
+        }
     }
 
     public void resetNodeVal(){
@@ -103,6 +112,8 @@ public class mediun : MonoBehaviour
     }
 
     public void createShadow(){
+        float sav = transform.eulerAngles.z;
+        transform.eulerAngles = Vector3.zero;
         if(width > 0){
             NativeList<int> listPos = mesh.grid.get_nodes_grid(transform.position,width,height);
             foreach(int i in listPos){
@@ -123,6 +134,8 @@ public class mediun : MonoBehaviour
                 }
             }
         }
+        transform.eulerAngles = new Vector3(0,0,sav);
+        // ensures the object orients to 0 degrees before shadow is taken
     }
 
     public void OnApplicationQuit(){
