@@ -246,11 +246,11 @@ public struct spreadJob : IJobParallelFor
         checkNeighbours(nodeIND - (width*2) + 2,nodeIND,spread);
         checkNeighbours(nodeIND - (width*2) - 2,nodeIND,spread);
 
-        checkNeighbours(nodeIND + (width*3) + 3,nodeIND,spread);
-        checkNeighbours(nodeIND + (width*3) - 3,nodeIND,spread);
+        // checkNeighbours(nodeIND + (width*3) + 3,nodeIND,spread);
+        // checkNeighbours(nodeIND + (width*3) - 3,nodeIND,spread);
 
-        checkNeighbours(nodeIND - (width*3) + 3,nodeIND,spread);
-        checkNeighbours(nodeIND - (width*3) - 3,nodeIND,spread);
+        // checkNeighbours(nodeIND - (width*3) + 3,nodeIND,spread);
+        // checkNeighbours(nodeIND - (width*3) - 3,nodeIND,spread);
         spread--;
     }
 
@@ -368,7 +368,7 @@ public struct DecibelsToColorJob : IJobParallelFor
         Color32 tarcol = colranks[0].col;
         Color32 orgcol = basecol;
         int i = 0;
-        if(ind > 0){
+        if(ind > 0 && ind < NodeArr.Length){
             while(NodeArr[ind].decibels >= maxcolval && i+1 < colranks.Length){
                 mincolval = colranks[i].max;
                 orgcol = colranks[i].col;
