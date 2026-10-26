@@ -35,7 +35,7 @@ public class enemy : MonoBehaviour
     void Awake(){
         // makes enemy track player
         nav = GetComponent<navigator>();
-        if(nav != null){
+        if(nav.enabled){
             detect = GetComponents<SoundSwitch>()[0];
             fear = GetComponents<SoundSwitch>()[1];
             rb = GetComponent<Rigidbody2D>();
@@ -54,7 +54,7 @@ public class enemy : MonoBehaviour
 
     void Update()
     {
-        if(enraged){DETECTNOISE(); mode = "attack";}
+        if(enraged){DETECTNOISE(); moveToPos(player.transform.position,1);}
         ambientFX();
         if(mode == "attack"){
             // attack logic
