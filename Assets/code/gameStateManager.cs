@@ -26,7 +26,7 @@ public class gameStateManager : MonoBehaviour
     void Update(){
         if(transition){
             // we be transitioning
-            if(mesh.grid.activeNodes.Length == 0){
+            if(!mesh.grid.activeNodes.IsCreated || (mesh.grid.activeNodes.IsCreated && mesh.grid.activeNodes.Length == 0)){
                 // no noise in the world
                 removeAll();
                 if(toMenu){
