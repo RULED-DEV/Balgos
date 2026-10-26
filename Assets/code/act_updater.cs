@@ -13,6 +13,7 @@ public class act_updater : MonoBehaviour
 
     void Start(){
         meds = gameObject.GetComponentsInChildren<mediun>();
+        T = Time.time + refresh_timer;
     }
 
     void Update()
