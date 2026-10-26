@@ -17,6 +17,7 @@ public class tutorialser : MonoBehaviour
 
     // condition : 
     // wait : waits a certain amount of time
+    // dist : waits until player is a certain dist away
 
     // N _name_ : sees if target of _name_ is still here
 
@@ -29,6 +30,7 @@ public class tutorialser : MonoBehaviour
     public GameObject textPref;
 
     float waitTime;
+    Vector3 pos;
 
     BALGOS pl;
     texter t;
@@ -65,6 +67,10 @@ public class tutorialser : MonoBehaviour
         if(comm.cond == "wait"){
             if(waitTime < Time.time){check = true;}
             // checks if enough time has passed
+        }
+        else if(comm.cond == "dist"){
+            if(Vector3.Distance(pos,pl.transform.position) > comm.val){check = true;}
+            // when player is far enough away from pos
         }
         else if(comm.cond[0] == 'N'){
             if(GameObject.Find(comm.cond.Split(" ")[1]) == null){check = true;}
@@ -103,6 +109,10 @@ public class tutorialser : MonoBehaviour
             if(commands[0].cond == "wait"){
                 waitTime = Time.time + commands[0].val;
                 // begins wait
+            }
+            else if(commands[0].cond == "dist"){
+                pos = pl.transform.position;
+                // saves players current position
             }
         }
     }
