@@ -132,6 +132,16 @@ public class BALGOS : MonoBehaviour
         }
     }
 
+    public void setBreach(bool b){
+        isbreachopen = b;
+        breach_point.NOISE();
+    }
+
+    public void setLever(bool b){
+        isleveropen = b;
+        lever_point.NOISE();
+    }
+
     public void checkReload(){
         enemy[] E = FindObjectsByType<enemy>(FindObjectsSortMode.None);
         // gets all enemies
