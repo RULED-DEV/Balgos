@@ -31,7 +31,7 @@ public class mediun : MonoBehaviour
         if(width < 0){
             // this triggers only for the map medium
             mesh.grid.constructNavGrid();
-            if(FindObjectsByType<levelManager>(FindObjectsSortMode.None)[0] != null){
+            if(FindObjectsByType<levelManager>(FindObjectsSortMode.None).Length > 0){
                 FindObjectsByType<levelManager>(FindObjectsSortMode.None)[0].StartLevel();
             }
             // generates navmesh and then starts the level (spawning enemies)
