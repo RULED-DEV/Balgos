@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d72c9f5cadea24a88be079a5e2022b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refresh_timer: 0.8
+  refresh_timer: 0.02
 --- !u!82 &200189318091201274
 AudioSource:
   m_ObjectHideFlags: 0
