@@ -23,15 +23,22 @@ public class mesh_manager : MonoBehaviour
     NativeArray<Color32> soundColors;
 
     public void Awake(){
-        soundColors = new NativeArray<Color32>(Mathf.RoundToInt((s.width/s.resolution)*(s.height/s.resolution)), Allocator.Persistent);
-        soundmap = new Texture2D(Mathf.RoundToInt(s.width/s.resolution),Mathf.RoundToInt(s.height/s.resolution), TextureFormat.RGBA32, false);
-        soundmap.wrapMode = TextureWrapMode.Clamp;
-        soundmap.filterMode = FilterMode.Point;
-        
-        grid.construct_grid(air,s.resolution);
-        // initialises grid
+        s = gameObject.GetComponent<setting_vals>(); // temp until options are added
+        if(s != null){
+            soundColors = new NativeArray<Color32>(Mathf.RoundToInt((s.width/s.resolution)*(s.height/s.resolution)), Allocator.Persistent);
+            soundmap = new Texture2D(Mathf.RoundToInt(s.width/s.resolution),Mathf.RoundToInt(s.height/s.resolution), TextureFormat.RGBA32, false);
+            soundmap.wrapMode = TextureWrapMode.Clamp;
+            soundmap.filterMode = FilterMode.Point;
+            
+            grid.construct_grid(air,s.resolution);
+            // initialises grid
 
-        Debug.Log("starts");
+            Debug.Log("starts");
+        }
+        else{
+            Invoke("Awake",0);
+        }
+        
     }
 
     public void FixedUpdate(){
@@ -48,7 +55,7 @@ public class mesh_manager : MonoBehaviour
 
     public void OnApplicationQuit(){
         grid.remove_grid();
-        soundColors.Dispose();
+        if(soundColors.IsCreated) soundColors.Dispose();
         // unloads grid
     }
 
