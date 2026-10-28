@@ -9,9 +9,6 @@ public class texter : MonoBehaviour
 
     string chars = "abcdefghijklmnopqrstuvwxyz,.";
 
-    public float initDelay;
-    public float decayDelay;
-
     public List<Sprite> textSpr = new List<Sprite>();
     // text sprites
 
@@ -30,10 +27,7 @@ public class texter : MonoBehaviour
         Vector2 pos = transform.position;
         pos = new Vector2(pos.x - (pos.x%unit), pos.y - (pos.y%unit));
         transform.position = pos;
-        Invoke("TextGeneration",initDelay);
-        if(decayDelay > 0){
-            Invoke("TextRemoval",decayDelay);
-        }
+        TextGeneration();
     }
 
     public float size;
