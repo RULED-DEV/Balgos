@@ -10,6 +10,9 @@ public class enemy : MonoBehaviour
     public float attackMult;
     public float fearMult;
 
+    public float nodeDist = 20;
+    // min distance a pos needs to be for enemy to navigate towards it
+
     public float attackRad;
 
     public string mode = "idle";
@@ -54,63 +57,65 @@ public class enemy : MonoBehaviour
 
     void Update()
     {
-        if(enraged){DETECTNOISE(); moveToPos(player.transform.position,1);}
-        ambientFX();
-        if(mode == "attack"){
-            // attack logic
-            if(attackDelay < Time.time){
-                moveToPos(player.transform.position,attackMult);
-                if(!playerCheck()){
-                    mode = "idle";
-                    nav.posList = new List<NavNode>();
-                    // player is out of sight, revert to idle
-                }
-                if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 1){
-                    // uses the heads transform (limbs[6] is on head)
-                    player.death();
-                    // player is killed
-                }
-            }
-        }
-        else{
-            // navigation logic
-            if(nav.posList.Count > 0){
-                // moves to next position
-                if(Vector2.Distance(transform.position,nav.posList[0].pos) < 2f){
-                    nav.posList.RemoveAt(0); // removes node when nearby
-                }
-                else{
-                    if(mode == "scared"){
-                        moveToPos(nav.posList[0].pos,fearMult);
+        if(nav.enabled){
+            if(enraged){DETECTNOISE(); moveToPos(player.transform.position,1);}
+            ambientFX();
+            if(mode == "attack"){
+                // attack logic
+                if(attackDelay < Time.time){
+                    moveToPos(player.transform.position,attackMult);
+                    if(!playerCheck()){
+                        mode = "idle";
+                        nav.posList = new List<NavNode>();
+                        // player is out of sight, revert to idle
                     }
-                    else{
-                        moveToPos(nav.posList[0].pos,1);
+                    if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 1){
+                        // uses the heads transform (limbs[6] is on head)
+                        player.death();
+                        // player is killed
                     }
                 }
             }
             else{
-                mode = "idle";
-                nav.tarPos = setRandPos(transform.position);
-                // navigates in the direction of the center of the map
-                nav.Navigate();
-                // generates new pos to idle toward
-            }
-            if(mode == "investigate"){
-                if(playerCheck()){
-                    mode = "attack";
-                    Debug.Log("scream");
-                    limbs[5].NOISE();
-                    // limbs at 6 is for scared scream
-                    // when entering attack mode it screams to warn the player
-                    attackDelay = Time.time + 0.8f;
-                    // attack delay causes the enemy to pause prior to attack, giving the player time to react
+                // navigation logic
+                if(nav.posList.Count > 0){
+                    // moves to next position
+                    if(Vector2.Distance(transform.position,nav.posList[0].pos) < 2f){
+                        nav.posList.RemoveAt(0); // removes node when nearby
+                    }
+                    else{
+                        if(mode == "scared"){
+                            moveToPos(nav.posList[0].pos,fearMult);
+                        }
+                        else{
+                            moveToPos(nav.posList[0].pos,1);
+                        }
+                    }
+                }
+                else{
+                    mode = "idle";
+                    nav.tarPos = setRandPos(transform.position);
+                    // navigates in the direction of the center of the map
+                    nav.Navigate();
+                    // generates new pos to idle toward
+                }
+                if(mode == "investigate"){
+                    if(playerCheck()){
+                        mode = "attack";
+                        Debug.Log("scream");
+                        limbs[5].NOISE();
+                        // limbs at 6 is for scared scream
+                        // when entering attack mode it screams to warn the player
+                        attackDelay = Time.time + 0.8f;
+                        // attack delay causes the enemy to pause prior to attack, giving the player time to react
+                    }
                 }
             }
-        }
-        if(mode == "idle"){
-            if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 6){
-                DETECTNOISE();
-                // if enemy is close to player and idling they investigate
+            if(mode == "idle"){
+                if(Vector2.Distance(player.transform.position,limbs[6].transform.position) < 6){
+                    DETECTNOISE();
+                    // if enemy is close to player and idling they investigate
+                }
             }
         }
     }
@@ -192,7 +197,7 @@ public class enemy : MonoBehaviour
             Vector2 rand = new Vector2(Random.Range(0,50),Random.Range(0,50));
             // picks random position on the map
             NavNode n = nav.nearestNode(rand);
-            if(n.valid && Vector2.Distance(pos,n.pos) > 20f){
+            if(n.valid && Vector2.Distance(pos,n.pos) > nodeDist){
                 // generates a position that is valid and a certain distance from pos
                 output = n.pos;
             }
@@ -208,7 +213,9 @@ public class enemy : MonoBehaviour
             // medium is removed and activelists are disposed                        
         }
 
-        FindObjectsByType<levelManager>(FindObjectsSortMode.None)[0].removeEnemy(gameObject.GetComponent<enemy>());
+        if(FindObjectsByType<levelManager>(FindObjectsSortMode.None).Length > 0){
+            FindObjectsByType<levelManager>(FindObjectsSortMode.None)[0].removeEnemy(gameObject.GetComponent<enemy>());
+        }
 
         Destroy(gameObject);
         // need to figure out how to remove shadow
