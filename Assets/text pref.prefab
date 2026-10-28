@@ -48,34 +48,34 @@ MonoBehaviour:
   initDelay: 0
   decayDelay: 0
   textSpr:
-  - {fileID: 1388467262, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 152123870, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 195688551, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 270037615, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -1335110492, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -1285278778, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -19278574, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 310975059, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -1516424358, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 1422121345, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 1848074079, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -666690816, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -2090752603, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 535845696, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -1955640859, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -1844446979, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -1807635600, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 1032324144, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 1797535831, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -1335450198, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 1592331957, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -2030207423, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -1254291611, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 1119377891, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 571617645, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: 420077946, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -605709067, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
-  - {fileID: -30382615, guid: a94a3fbc6abc4ca4d8f231b1f9797d80, type: 3}
+  - {fileID: 8655180927555199362, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 737296639, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 445936145, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -2080408608, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -368819925, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 464033634, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 511190503, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -184810722, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -637026190, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 1004132773, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -1244567724, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 1502454311, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 510414232, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 42135633, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 1791359070, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -785822667, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -228433911, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -1392851403, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 611639865, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -1844974590, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 961213589, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 579277973, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -1193692920, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -816183064, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -787648645, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 1085481402, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: 846575852, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
+  - {fileID: -1066651407, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
   MV:
     decibels: 0
     decay: 0.5
