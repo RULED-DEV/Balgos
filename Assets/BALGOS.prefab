@@ -210,7 +210,7 @@ MonoBehaviour:
     decay: 1.4
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.51
+    spreadExclusive: 1
   width: 2
   height: 3
 --- !u!1 &406953133268851739
@@ -263,7 +263,8 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: 844887c2153691b4f89d0e3ca43a45ba, type: 3}
 --- !u!1 &977168042170165919
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +322,7 @@ MonoBehaviour:
   trail_noise: 120
   isbreachopen: 0
   isleveropen: 0
+  canEcholocate: 1
   bullet_LOAD: {fileID: 1715639626361764200}
   barrel_fire_point: {fileID: 3958143578332757087}
   echolocate_point: {fileID: 3369744827742519493}
@@ -614,7 +616,7 @@ MonoBehaviour:
     decay: 1.4
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.51
+    spreadExclusive: 1
   width: 2
   height: 3
 --- !u!1 &4868983961669997874
@@ -645,7 +647,7 @@ Transform:
   m_GameObject: {fileID: 4868983961669997874}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.006, y: 0.08, z: 0}
+  m_LocalPosition: {x: 0.006, y: -0.08, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -670,7 +672,8 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sounds: []
+  sounds:
+  - {fileID: 0}
 --- !u!60 &6110505407766610588
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -721,9 +724,11 @@ PolygonCollider2D:
       - {x: 0.016320169, y: 0.20153025}
       - {x: 0.00063822605, y: -1.2328821}
       - {x: 0.3380897, y: -1.380691}
-      - {x: 0.46939567, y: -1.0203741}
-      - {x: 0.13207823, y: -1.1993433}
-      - {x: 0.07829134, y: -1.074897}
+      - {x: 0.45916438, y: -1.2893085}
+      - {x: 0.46508124, y: -0.81513184}
+      - {x: 0.29839396, y: -1.2015964}
+      - {x: 0.17465025, y: -1.1887009}
+      - {x: 0.16875562, y: -1.0642546}
       - {x: 0.12404664, y: 0.1479463}
   m_UseDelaunayMesh: 0
 --- !u!114 &3497676789367533968
@@ -796,7 +801,8 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: e68b6518568f46d47811352d345a0bbd, type: 3}
 --- !u!1 &6414585920530231196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1136,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 965b856cd4951824682153af04be10c0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1
@@ -1233,7 +1239,7 @@ MonoBehaviour:
     decay: 1.4
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.51
+    spreadExclusive: 1
   width: 2
   height: 3
 --- !u!1 &7970454897540299022
@@ -1408,7 +1414,7 @@ MonoBehaviour:
     decay: 1.4
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.51
+    spreadExclusive: 1
   width: 2
   height: 3
 --- !u!1 &8273206509576801275
@@ -1463,7 +1469,8 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: 68c8e475e71b2fa4ab69afef45e85148, type: 3}
 --- !u!60 &6654807598986201278
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1512,9 +1519,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -0.0035171509, y: 0.010577202}
       - {x: -0.07452685, y: -0.047024935}
-      - {x: -0.08401245, y: -0.31289375}
-      - {x: -0.00517118, y: -0.46843314}
-      - {x: 0.07051468, y: -0.184865}
+      - {x: -0.07284047, y: -0.49723333}
+      - {x: 0.0032071676, y: -0.6946676}
+      - {x: 0.07330704, y: -0.3803759}
       - {x: 0.0659399, y: -0.091508925}
   m_UseDelaunayMesh: 0
 --- !u!114 &1970288302787428854
@@ -1587,7 +1594,10 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: e9965d87ab72251449683cf9a60e0948, type: 3}
+  - {fileID: 8300000, guid: a7063cb3b80c18d4cba5159e59f6f44a, type: 3}
+  - {fileID: 8300000, guid: 6b6cbf576bfd556439fa2bc3384bc1bb, type: 3}
 --- !u!1 &8336542921915928885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,4 +1648,7 @@ MonoBehaviour:
   recor: 0
   T: 0
   SFX: {fileID: 200189318091201274}
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: 51dd6cf0bda5d2842becdac2e0ead54a, type: 3}
+  - {fileID: 8300000, guid: 7a5875fd1187d8a4fadb97ba61f01e3a, type: 3}
+  - {fileID: 8300000, guid: 05fb817bcf747e94fa31f3e6be584332, type: 3}
