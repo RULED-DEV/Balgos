@@ -145,58 +145,56 @@ public class tutorialser : MonoBehaviour
     }
 
     public void spawnText(string text, float noise){
-        float posx = Random.Range(-maxDist*100,maxDist*100);
-        float posy = Random.Range(-maxDist*100,maxDist*100);
         float minDist = 2.5f;
-        if(Mathf.Abs(posx) < minDist){
-            if(posx < 0){posx = -minDist;}
-            else{posx = minDist;}
-        }
-        if(Mathf.Abs(posy) < minDist){
-            if(posy < 0){posy = -minDist;}
-            else{posy = minDist;}
-        }
-        Vector3 pos = new Vector3(posx/100,posy/100,0);
-        texter T = Instantiate(textPref,transform.position+pos,transform.rotation).GetComponent<texter>();
-        T.text = text;
-        // places T at a distance away from the player
+        int count = 0;
+        Vector2[] dirs = {
+            new Vector2(0,1),
+            new Vector2(1,1),
+            new Vector2(1,0),
+            new Vector2(1,-1),
+            new Vector2(0,-1),
+            new Vector2(-1,-1),
+            new Vector2(-1,0),
+            new Vector2(-1,1),
+        };
+        Vector2 dir = dirs[count]; // direction text will go in
 
+        Vector3 pos = transform.position + new Vector3(dir.x*minDist,dir.y*minDist,0);
+
+        bool check = false;
         float unit = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0].grid.spacing;
-        float size = 0.5f + (text.Length*((3+T.spacing)*unit));
-        bool check = true;
-
-        int y = -1;
-        if(pl.transform.position.y > T.transform.position.y){y = 1;}
-        int looper = 0;
-        while(check && looper < 30){
-            looper ++;
-            RaycastHit2D hitUpA = Physics2D.Raycast(T.transform.position, y*transform.up, 5*unit);
-            RaycastHit2D hitUpB = Physics2D.Raycast(T.transform.position, y*transform.up+new Vector3(size,0,0), 5*unit);
-            // 2 vertical checks in the direction of the tutorialser from the texter
-
-            RaycastHit2D hitAcrA = Physics2D.Raycast(T.transform.position, transform.right, size);
-            RaycastHit2D hitAcrB = Physics2D.Raycast(T.transform.position, -transform.right, 0.5f);
-            // 2 horizontal checks to ensure we are not clipping into walls
-            if(hitUpA.collider != null || hitUpB.collider != null){
-                // moves text vertically towards tutorialser
-                
-                T.transform.position = T.transform.position + (new Vector3(0,5*unit,0)*y);
-            }
-            else if(hitAcrA.collider != null){
-                // moves text left away from struck wall
-                T.transform.position = T.transform.position - new Vector3((3+T.spacing)*unit,0,0);
-            }
-            else if(hitAcrB.collider != null){
-                // moves text right away from struck wall
-                T.transform.position = T.transform.position + new Vector3((3+T.spacing)*unit,0,0);
+        float spacing = 1;
+        float size = 0.5f + (text.Length*((3+spacing)*unit));
+        while(!check && count < dirs.Length){
+            RaycastHit2D hitUpA = Physics2D.Raycast(pos-new Vector3(5*unit,5*unit,0), transform.up, 5*unit*2);
+            RaycastHit2D hitUpB = Physics2D.Raycast(pos-new Vector3(5*unit,5*unit,0), transform.up + new Vector3(size,0,0), 5*unit*2);
+            // 2 raycasts at each end of the word which check the space is clear
+            RaycastHit2D hitAcrA = Physics2D.Raycast(pos-new Vector3(5*unit,0,0), transform.right, size);
+            RaycastHit2D hitAcrB = Physics2D.Raycast(pos-new Vector3(5*unit,0,0), -transform.right, 0.5f);
+            // 2 raycats that check we have enough space either side
+            bool c = hitAcrA.collider != null || hitAcrB.collider != null;
+            c = c || hitUpA.collider != null || hitUpB.collider != null;
+            if(c){
+                float d = 0.1f;
+                pos += new Vector3(dir.x*d,dir.y*d,0);
+                // we are not at a valid position, restart loop and offset start pos
+                Vector3 p = pos + new Vector3(size,0,0);
+                if(Vector3.Distance(pos,pl.transform.position) > maxDist && Vector3.Distance(p,pl.transform.position) > maxDist){
+                    count ++;
+                    dir = dirs[count];
+                    pos = transform.position + new Vector3(dir.x*minDist,dir.y*minDist,0);
+                    // if both ends of the text are too far away we restart
+                }
             }
             else{
-                check = false;
-                // passed the check
+                texter T = Instantiate(textPref,pos,transform.rotation).GetComponent<texter>();
+                T.text = text;
+                T.INIT();
+                m.grid.editnodeval(m.grid.pos_to_ind(T.transform.position + new Vector3(size/2,0,0)),noise);
+                t.Add(T);
+                check = true;
             }
         }
-        m.grid.editnodeval(m.grid.pos_to_ind(T.transform.position + new Vector3(size/2,0,0)),noise);
-        t.Add(T);
     }
 
 }
