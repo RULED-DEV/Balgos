@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: 
-  initDelay: 0
-  decayDelay: 0
   textSpr:
   - {fileID: 8655180927555199362, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
   - {fileID: 737296639, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
@@ -78,10 +76,10 @@ MonoBehaviour:
   - {fileID: -1066651407, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
   MV:
     decibels: 0
-    decay: 0.5
-    spreadRate: 2
+    decay: 1
+    spreadRate: 1
     spreadPerc: 1
-    spreadExclusive: 1
+    spreadExclusive: 0.5
   textList: []
   size: 1
   spacing: 1
