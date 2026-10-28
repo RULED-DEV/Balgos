@@ -260,7 +260,7 @@ public struct spreadJob : IJobParallelFor
         if(indCHK){
 
             valCHK = NodeArr[neighborIndex].decibels < NodeArr[nodeIND].decibels;
-            valCHK = valCHK && (NodeArr[nodeIND].decibels - NodeArr[neighborIndex].decibels > 30);
+            valCHK = valCHK && (NodeArr[nodeIND].decibels - NodeArr[neighborIndex].decibels > 15);
             valCHK = valCHK || NodeArr[neighborIndex].decibels <= 0;
 
             if(valCHK){
