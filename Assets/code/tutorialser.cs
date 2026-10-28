@@ -26,6 +26,8 @@ public class tutorialser : MonoBehaviour
     // PL lever F : lever must be closed
     // PL lever T : lever must be open
 
+    // echo : player has echolocated
+
     public float maxDist;
     public GameObject textPref;
 
@@ -33,11 +35,17 @@ public class tutorialser : MonoBehaviour
     Vector3 pos;
 
     BALGOS pl;
-    texter t;
+    mesh_manager m;
+    List<texter> t = new List<texter>();
+    AudioSource s;
     public string nextScene;
 
-    void Awake(){
+    public float textNoise;
+
+    void Start(){
         pl = FindObjectsByType<BALGOS>(FindObjectsSortMode.None)[0];
+        m = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0];
+        s = GetComponentInChildren<AudioSource>();
 
         newCommand();
         // loads first command
@@ -48,7 +56,11 @@ public class tutorialser : MonoBehaviour
             if(commCondCheck(commands[0])){
                 // is condition satisfied?
                 commands.RemoveAt(0);
-                if(t != null){t.TextRemoval(); Destroy(t.gameObject);}
+                while(t.Count > 0){
+                    t[0].TextRemoval(); 
+                    Destroy(t[0].gameObject);
+                    t.RemoveAt(0);
+                }
                 // removes text and prior command
                 newCommand();
             }
@@ -92,6 +104,10 @@ public class tutorialser : MonoBehaviour
             if(pl.isleveropen){check = true;}
             // checks if lever is open
         }
+        else if(comm.cond == "echo"){
+            if(!pl.canEcholocate){check = true;}
+            // checks if player has echolocated
+        }
         return check;
     }
 
@@ -102,7 +118,18 @@ public class tutorialser : MonoBehaviour
             else if(commands[0].comm == "PL lever F"){pl.setLever(false);}
             else if(commands[0].comm == "PL lever T"){pl.setLever(true);}
             else{
-                spawnText(commands[0].comm);
+                if(commands[0].comm[commands[0].comm.Length-1] != ' '){
+                    foreach(string s in commands[0].comm.Split(",")){
+                        spawnText(s,textNoise);
+                    }
+                    s.Play(); 
+                }
+                // if last letter in text string is whitespace it doesnt make noise for the text
+                else{
+                    foreach(string s in commands[0].comm.Split(",")){
+                        spawnText(s,0);
+                    }
+                }
                 // spawns text
             }
 
@@ -117,55 +144,59 @@ public class tutorialser : MonoBehaviour
         }
     }
 
-    public void spawnText(string text){
+    public void spawnText(string text, float noise){
         float posx = Random.Range(-maxDist*100,maxDist*100);
         float posy = Random.Range(-maxDist*100,maxDist*100);
-        if(Mathf.Abs(posx) < 2){
-            if(posx < 0){posx = -2;}
-            else{posx = 2;}
+        float minDist = 2.5f;
+        if(Mathf.Abs(posx) < minDist){
+            if(posx < 0){posx = -minDist;}
+            else{posx = minDist;}
         }
-        if(Mathf.Abs(posy) < 2){
-            if(posy < 0){posy = -2;}
-            else{posy = 2;}
+        if(Mathf.Abs(posy) < minDist){
+            if(posy < 0){posy = -minDist;}
+            else{posy = minDist;}
         }
         Vector3 pos = new Vector3(posx/100,posy/100,0);
-        t = Instantiate(textPref,transform.position+pos,transform.rotation).GetComponent<texter>();
-        t.text = text;
-        // places t at a distance away from the player
+        texter T = Instantiate(textPref,transform.position+pos,transform.rotation).GetComponent<texter>();
+        T.text = text;
+        // places T at a distance away from the player
 
         float unit = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0].grid.spacing;
-        float size = 0.5f + (text.Length*((3+t.spacing)*unit));
+        float size = 0.5f + (text.Length*((3+T.spacing)*unit));
         bool check = true;
 
-        if(posy > 0){posy = 1;}
-        else{posy = -1;}
+        int y = -1;
+        if(pl.transform.position.y > T.transform.position.y){y = 1;}
         int looper = 0;
         while(check && looper < 30){
             looper ++;
-            RaycastHit2D hitUpA = Physics2D.Raycast(t.transform.position, posy*transform.up, 5*unit);
-            RaycastHit2D hitUpB = Physics2D.Raycast(t.transform.position, posy*transform.up+new Vector3(size,0,0), 5*unit);
+            RaycastHit2D hitUpA = Physics2D.Raycast(T.transform.position, y*transform.up, 5*unit);
+            RaycastHit2D hitUpB = Physics2D.Raycast(T.transform.position, y*transform.up+new Vector3(size,0,0), 5*unit);
             // 2 vertical checks in the direction of the tutorialser from the texter
 
-            RaycastHit2D hitAcrA = Physics2D.Raycast(t.transform.position, transform.right, size);
-            RaycastHit2D hitAcrB = Physics2D.Raycast(t.transform.position, -transform.right, 0.5f);
-            // 2 horizontal checks to ensire we are not clipping into walls
+            RaycastHit2D hitAcrA = Physics2D.Raycast(T.transform.position, transform.right, size);
+            RaycastHit2D hitAcrB = Physics2D.Raycast(T.transform.position, -transform.right, 0.5f);
+            // 2 horizontal checks to ensure we are not clipping into walls
             if(hitUpA.collider != null || hitUpB.collider != null){
                 // moves text vertically towards tutorialser
-                t.transform.position = t.transform.position + (new Vector3(0,5*unit,0)*posy);
+                
+                T.transform.position = T.transform.position + (new Vector3(0,5*unit,0)*y);
             }
             else if(hitAcrA.collider != null){
                 // moves text left away from struck wall
-                t.transform.position = t.transform.position - new Vector3((3+t.spacing)*unit,0,0);
+                T.transform.position = T.transform.position - new Vector3((3+T.spacing)*unit,0,0);
             }
             else if(hitAcrB.collider != null){
                 // moves text right away from struck wall
-                t.transform.position = t.transform.position + new Vector3((3+t.spacing)*unit,0,0);
+                T.transform.position = T.transform.position + new Vector3((3+T.spacing)*unit,0,0);
             }
             else{
                 check = false;
                 // passed the check
             }
         }
+        m.grid.editnodeval(m.grid.pos_to_ind(T.transform.position + new Vector3(size/2,0,0)),noise);
+        t.Add(T);
     }
 
 }
