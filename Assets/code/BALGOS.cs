@@ -66,11 +66,15 @@ public class BALGOS : MonoBehaviour
                 breach_point.NOISE(); // breach opening
             }
         }
-        if(Input.GetMouseButton(1) && echoT < Time.time){
+        if(Input.GetMouseButton(1) && canEcholocate){
             // echolocate
             checkReload();
             echoT = Time.time + 1.5f;
             echolocate_point.NOISE();
+            canEcholocate = false;
+        }
+        if(echoT < Time.time){
+            canEcholocate = true;
         }
     }
 
@@ -97,6 +101,9 @@ public class BALGOS : MonoBehaviour
 
     public bool isleveropen;
     // if lever closed then can reload 
+
+    public bool canEcholocate = true;
+    // if true we can echolocate
 
     public limb bullet_LOAD;
     // point where bullet is loaded/ejected
@@ -170,7 +177,7 @@ public class BALGOS : MonoBehaviour
         }
         Vector2 bulletPOS = new Vector2(0.006f,0.08f);
         if(isbreachopen){
-            bulletPOS = new Vector2(0.006f,-0.045f);
+            bulletPOS = new Vector2(0.006f,-0.08f);
         }
         lever_point.transform.localEulerAngles = new Vector3(0,0,Mathf.LerpAngle(lever_point.transform.localEulerAngles.z,breachANG,Time.deltaTime*5));
         bullet_LOAD.transform.localPosition = Vector2.Lerp(bullet_LOAD.transform.localPosition,bulletPOS,Time.deltaTime*5);
