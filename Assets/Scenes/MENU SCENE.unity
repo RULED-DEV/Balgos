@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3a8d9ba3e0a4249909cdfe811d8054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ACTSTR: tutorial scene
+  ACTSTR: tutorial move scene
   Conn: {fileID: 0}
   levelTransition: 1
 --- !u!1001 &1139781883652476696
