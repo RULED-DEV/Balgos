@@ -22,8 +22,17 @@ public class mesh_manager : MonoBehaviour
     Texture2D soundmap;
     NativeArray<Color32> soundColors;
 
+    public col_rank[] coloursequence;
+
     public void Awake(){
-        s = gameObject.GetComponent<setting_vals>(); // temp until options are added
+        
+        // settings init
+        if(s.test) s.saveVals();
+        s.loadVals();
+        setSeq(s.colVals);
+        Application.targetFrameRate = 60;
+        // loads setting data
+
         if(s != null){
             soundColors = new NativeArray<Color32>(Mathf.RoundToInt((s.width/s.resolution)*(s.height/s.resolution)), Allocator.Persistent);
             soundmap = new Texture2D(Mathf.RoundToInt(s.width/s.resolution),Mathf.RoundToInt(s.height/s.resolution), TextureFormat.RGBA32, false);
@@ -61,9 +70,9 @@ public class mesh_manager : MonoBehaviour
 
     void UpdatesoundmapTexture()
     {
-        NativeArray<col_rank> colseq = new NativeArray<col_rank>(s.coloursequence.Length, Allocator.TempJob);
-        for(int i = 0; i < s.coloursequence.Length; i++){
-            colseq[i] = s.coloursequence[i];
+        NativeArray<col_rank> colseq = new NativeArray<col_rank>(coloursequence.Length, Allocator.TempJob);
+        for(int i = 0; i < coloursequence.Length; i++){
+            colseq[i] = coloursequence[i];
         }
         var job = new DecibelsToColorJob
         {
@@ -95,5 +104,26 @@ public class mesh_manager : MonoBehaviour
         );
         soundrenderer.transform.localScale = new Vector2(1/s.resolution,1/s.resolution);
         soundrenderer.sprite = sprite;
+    }
+
+    void setSeq(savCol[] colVals){
+        for(int i = 0; i < colVals.Length; i++){
+            coloursequence[i].col = new Color{
+                r = colVals[i].R,
+                g = colVals[i].G,
+                b = colVals[i].B,
+                a = 1
+            };
+        }
+        // takes savCol from settings and applies it to coloursequence
+    }
+
+    void setCol(){
+        for(int i = 0; i < coloursequence.Length; i++){
+            s.colVals[i].R = coloursequence[i].col.r;
+            s.colVals[i].G = coloursequence[i].col.g;
+            s.colVals[i].B = coloursequence[i].col.b;
+        }
+        // takes coloursequence and applies it to settings
     }
 }
