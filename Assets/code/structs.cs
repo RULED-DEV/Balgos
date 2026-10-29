@@ -45,6 +45,14 @@ public struct TutorialComm{
 }
 
 [System.Serializable]
+public struct savCol{
+    public float R;
+    public float G;
+    public float B;
+    // used to save values for colours
+}
+
+[System.Serializable]
 public struct col_rank{
     // used to handle colour display by values
     public Color32 col;
