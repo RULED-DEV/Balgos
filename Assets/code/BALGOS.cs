@@ -29,6 +29,12 @@ public class BALGOS : MonoBehaviour
         FOOT.Invoke("NOISE",0.15f);
         FOOT.Invoke("NOISE",0.15f);
         // makes noise on spawining to let player know game is ready
+        if(mesh.s.noCollision){
+            foreach(Collider2D c in GetComponentsInChildren<Collider2D>()){
+                c.isTrigger = true;
+            }
+            // removes collision
+        }
     }
 
     void Update()
@@ -59,8 +65,13 @@ public class BALGOS : MonoBehaviour
     void fireManager(){
         if(Input.GetMouseButton(0)){
             if(!isbreachopen){
-                isbreachopen = true;
-                checkReload();
+                if(!mesh.s.infiniteAmmo){// checks if we have infinite ammo
+                    isbreachopen = true;
+                    checkReload();
+                    // unloads gun, checks for lever actuation
+                }
+                
+                
                 FIRE();
                 barrel_fire_point.NOISE(); // fire noise
                 breach_point.NOISE(); // breach opening
@@ -184,9 +195,11 @@ public class BALGOS : MonoBehaviour
     }
 
     public void death(){
-        FindObjectsByType<gameStateManager>(FindObjectsSortMode.None)[0].toMenu = true;
-        FindObjectsByType<gameStateManager>(FindObjectsSortMode.None)[0].StopAllSources();
-        // player dies, level transitions to a new one
+        if(!mesh.s.cannotDie){// checks if we can die
+            FindObjectsByType<gameStateManager>(FindObjectsSortMode.None)[0].toMenu = true;
+            FindObjectsByType<gameStateManager>(FindObjectsSortMode.None)[0].StopAllSources();
+            // player dies, level transitions to a new one
+        }
     }
 
     void movement(){
