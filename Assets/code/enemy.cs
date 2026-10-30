@@ -161,7 +161,7 @@ public class enemy : MonoBehaviour
     }
 
     public void DETECTNOISE(){
-        if(mode != "scared" && mode != "attack"){
+        if(mode != "scared" && mode != "attack" && FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0].s.enemiesCanAggro){
             if(growlTimer < Time.time && mode != "investigate"){
                 limbs[4].NOISE();
                 // limbs at 4 is detect growling
