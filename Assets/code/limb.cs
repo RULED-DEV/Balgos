@@ -7,6 +7,8 @@ public class limb : MonoBehaviour
 
     mesh_manager mesh;
     // reference to the mesh
+    public bool isPlayer;
+    // used for settings
 
     public float volume;
     // how loud the noise is
@@ -29,6 +31,11 @@ public class limb : MonoBehaviour
         NPOS = transform.position;
         LOCNOISE = volume;
         rec = recor;
+
+        float val = mesh.s.enemyAud;
+        if(isPlayer){val = mesh.s.playerAud;}
+
+        SFX.volume = val;
     }
 
     Vector2 randpos(Vector2 org,float range){
@@ -46,7 +53,7 @@ public class limb : MonoBehaviour
 
     public void NOISE(){
         NPOS = transform.position;
-        LOCNOISE = volume;
+        LOCNOISE = volume*(SFX.volume*2);
         rec = recor;
         noise();
     }
