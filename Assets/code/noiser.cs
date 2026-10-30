@@ -17,13 +17,20 @@ public class noiser : MonoBehaviour
     void Start(){
         s = gameObject.GetComponent<AudioSource>();
         mesh = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0];
+
+        s.volume = mesh.s.menuAud;
     }
 
     void Update(){
         if(timer < Time.time){
             timer = Time.time + time;
             if(s != null){s.Play();}
-            mesh.grid.editnodeval(mesh.grid.pos_to_ind(transform.position),volume);
+            if(mesh.s.AudioEffectsSimulation){
+                mesh.grid.editnodeval(mesh.grid.pos_to_ind(transform.position),volume*(mesh.s.menuAud*2));
+            }
+            else{
+                mesh.grid.editnodeval(mesh.grid.pos_to_ind(transform.position),volume);
+            }
         }
     }
 }
