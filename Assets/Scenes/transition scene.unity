@@ -605,9 +605,41 @@ MonoBehaviour:
     spreadRate: 0
     spreadPerc: 0
     spreadExclusive: 0
-  s: {fileID: 0}
-  refreshrate: 0
+  s:
+    width: 0
+    height: 0
+    resolution: 0
+    refreshrate: 0
+    menuAud: 0
+    playerAud: 0
+    enemyAud: 0
+    mouseAud: 0
+    cursorInLevel: 0
+    seeCursor: 0
+    AudioEffectsSimulation: 0
+    cannotDie: 0
+    infiniteAmmo: 0
+    noCollision: 0
+    colVals: []
+    ManualSaveCheck: 0
   soundrenderer: {fileID: 0}
+  coloursequence:
+  - col:
+      serializedVersion: 2
+      rgba: 0
+    max: 0
+  - col:
+      serializedVersion: 2
+      rgba: 0
+    max: 50
+  - col:
+      serializedVersion: 2
+      rgba: 0
+    max: 90
+  - col:
+      serializedVersion: 2
+      rgba: 0
+    max: 100
 --- !u!1001 &279779110
 PrefabInstance:
   m_ObjectHideFlags: 0

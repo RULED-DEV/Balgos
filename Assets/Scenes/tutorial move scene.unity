@@ -365,43 +365,6 @@ Sprite:
   m_Bones: []
   m_ScriptableObjects: []
   m_SpriteID: 
---- !u!1 &219435981 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8472490983946961794, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
-  m_PrefabInstance: {fileID: 1139781883652476696}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &219435984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219435981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d0ae0992c95e0f408fc26ce1fc26b1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: 28
-  height: 16
-  resolution: 0.125
-  coloursequence:
-  - col:
-      serializedVersion: 2
-      rgba: 4280096278
-    max: 0
-  - col:
-      serializedVersion: 2
-      rgba: 4282006074
-    max: 50
-  - col:
-      serializedVersion: 2
-      rgba: 4279835080
-    max: 90
-  - col:
-      serializedVersion: 2
-      rgba: 4288651174
-    max: 100
 --- !u!114 &733449760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,7 +773,7 @@ PrefabInstance:
     - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: s
       value: 
-      objectReference: {fileID: 219435984}
+      objectReference: {fileID: 0}
     - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: air.decay
       value: 2
@@ -862,6 +825,22 @@ PrefabInstance:
     - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: grid.gradientHeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+      propertyPath: coloursequence.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+      propertyPath: coloursequence.Array.data[1].max
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+      propertyPath: coloursequence.Array.data[2].max
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+      propertyPath: coloursequence.Array.data[3].max
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1877128420125765769, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: m_Tiles.Array.size
@@ -44388,9 +44367,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3225684245942242740, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1454997958}
-    - targetCorrespondingSourceObject: {fileID: 8472490983946961794, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 219435984}
   m_SourcePrefab: {fileID: 100100000, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
 --- !u!4 &1139781883652476697 stripped
 Transform:

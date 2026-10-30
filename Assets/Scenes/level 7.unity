@@ -1649,9 +1649,41 @@ MonoBehaviour:
     spreadRate: 1
     spreadPerc: 0.3
     spreadExclusive: 0.5
-  s: {fileID: 8810452904924400795}
-  refreshrate: 0.025
+  s:
+    width: 0
+    height: 0
+    resolution: 0
+    refreshrate: 0
+    menuAud: 0
+    playerAud: 0
+    enemyAud: 0
+    mouseAud: 0
+    cursorInLevel: 0
+    seeCursor: 0
+    AudioEffectsSimulation: 0
+    cannotDie: 0
+    infiniteAmmo: 0
+    noCollision: 0
+    colVals: []
+    ManualSaveCheck: 0
   soundrenderer: {fileID: 1273996308}
+  coloursequence:
+  - col:
+      serializedVersion: 2
+      rgba: 0
+    max: 0
+  - col:
+      serializedVersion: 2
+      rgba: 0
+    max: 50
+  - col:
+      serializedVersion: 2
+      rgba: 0
+    max: 90
+  - col:
+      serializedVersion: 2
+      rgba: 0
+    max: 100
 --- !u!1 &2527292548091609772
 GameObject:
   m_ObjectHideFlags: 0
@@ -10532,7 +10564,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6922827049580348714}
   - component: {fileID: 1982911446788407074}
-  - component: {fileID: 8810452904924400795}
   m_Layer: 0
   m_Name: gridser
   m_TagString: Untagged
@@ -10540,38 +10571,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8810452904924400795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8810452904924400794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d0ae0992c95e0f408fc26ce1fc26b1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: 28
-  height: 16
-  resolution: 0.125
-  coloursequence:
-  - col:
-      serializedVersion: 2
-      rgba: 4280096278
-    max: 0
-  - col:
-      serializedVersion: 2
-      rgba: 4282006074
-    max: 50
-  - col:
-      serializedVersion: 2
-      rgba: 4279835080
-    max: 90
-  - col:
-      serializedVersion: 2
-      rgba: 4288651174
-    max: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
