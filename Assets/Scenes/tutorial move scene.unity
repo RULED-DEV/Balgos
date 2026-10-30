@@ -779,6 +779,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+      propertyPath: cursPrefab
+      value: 
+      objectReference: {fileID: 1727674445218028379, guid: 67b33a802cde9764a9e085e1d5051def, type: 3}
+    - target: {fileID: 1465331111820849210, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: grid.width
       value: 32
       objectReference: {fileID: 0}

@@ -1559,6 +1559,7 @@ MonoBehaviour:
     height: 0
     resolution: 0
     refreshrate: 0
+    frameRate: 0
     menuAud: 0
     playerAud: 0
     enemyAud: 0
@@ -1566,12 +1567,14 @@ MonoBehaviour:
     cursorInLevel: 0
     seeCursor: 0
     AudioEffectsSimulation: 0
+    enemiesCanAggro: 0
     cannotDie: 0
     infiniteAmmo: 0
     noCollision: 0
     colVals: []
     ManualSaveCheck: 0
   soundrenderer: {fileID: 1273996308}
+  cursPrefab: {fileID: 1727674445218028379, guid: 67b33a802cde9764a9e085e1d5051def, type: 3}
   coloursequence:
   - col:
       serializedVersion: 2
