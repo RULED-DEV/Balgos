@@ -13,7 +13,6 @@ public class mesh_manager : MonoBehaviour
     public mat_vals air;
     public setting_vals s;
 
-    public float refreshrate;
     float refrate;
     int frame = 0;
 
@@ -27,7 +26,7 @@ public class mesh_manager : MonoBehaviour
     public void Awake(){
         
         // settings init
-        if(s.test) s.saveVals();
+        if(s.ManualSaveCheck) s.saveVals();
         s.loadVals();
         setSeq(s.colVals);
         Application.targetFrameRate = 60;
@@ -54,7 +53,7 @@ public class mesh_manager : MonoBehaviour
         if(Time.time > refrate){ // really expensive, rendering costs MASSIVE
             // act nodes contribute heavily to rendering costs 
             // refreshes the screen
-            refrate = Time.time + refreshrate;
+            refrate = Time.time + s.refreshrate;
             grid.updateMap(frame);
             UpdatesoundmapTexture();
             ApplysoundmapToRenderer();
