@@ -12,6 +12,8 @@ public class setting_vals {
     public float resolution; // multiplies pixel amounts
     public float refreshrate; // how eften we refresh the soundmap
 
+    public int frameRate; // defines the max FPS
+
     public float menuAud;
     public float playerAud;
     public float enemyAud;
@@ -21,6 +23,8 @@ public class setting_vals {
     public bool cursorInLevel; // does cursor make noise in levels
     public bool seeCursor; // do you want to see the cursor
     public bool AudioEffectsSimulation; // does the Aud variables effect the noise written to the grid
+
+    public bool enemiesCanAggro; // wether enemies will attack player
 
     public bool cannotDie; // is player invinsible
     public bool infiniteAmmo; // does weapon need to reload
