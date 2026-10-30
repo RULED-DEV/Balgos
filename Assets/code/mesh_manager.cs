@@ -18,6 +18,8 @@ public class mesh_manager : MonoBehaviour
 
     public SpriteRenderer soundrenderer;
 
+    public GameObject cursPrefab;
+
     Texture2D soundmap;
     NativeArray<Color32> soundColors;
 
@@ -29,7 +31,15 @@ public class mesh_manager : MonoBehaviour
         if(s.ManualSaveCheck) s.saveVals();
         s.loadVals();
         setSeq(s.colVals);
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = s.frameRate;
+        if(s.cursorInLevel && FindObjectsByType<mesh_manager>(FindObjectsSortMode.None).Length == 0){
+            // spawn cursor
+            Instantiate(cursPrefab);
+        }
+        
+        Cursor.visible = s.seeCursor;
+        // sets cursor to be on/off depending on seeCursor
+
         // loads setting data
 
         if(s != null){
