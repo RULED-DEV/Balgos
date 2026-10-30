@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   volume: 120
   spread: 0
   continuity: 0
@@ -666,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   volume: 30
   spread: 0.1
   continuity: 0
@@ -795,6 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   volume: 45
   spread: 0.1
   continuity: 0
@@ -1463,6 +1466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   volume: 30
   spread: 0.1
   continuity: 0
@@ -1588,6 +1592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   volume: 15
   spread: 0
   continuity: 0
@@ -1642,6 +1647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   volume: 80
   spread: 0
   continuity: 0
