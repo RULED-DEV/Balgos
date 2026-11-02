@@ -978,9 +978,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3a8d9ba3e0a4249909cdfe811d8054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ACTSTR: options scene
+  ACTSTR: settings scene
   Conn: {fileID: 0}
-  levelTransition: 0
+  levelTransition: 1
 --- !u!1 &1631643567 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 839968500420277686, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
