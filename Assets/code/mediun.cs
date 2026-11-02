@@ -5,6 +5,7 @@ using Unity.Jobs;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Mathematics;
+using UnityEngine.SceneManagement;
 
 public class mediun : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class mediun : MonoBehaviour
     mesh_manager mesh;
 
     public float width, height;
+
+    public bool SaveShadow;
+    // only applicable to map medium
 
     public void Start(){
         Invoke("INIT",Time.deltaTime);
@@ -118,7 +122,7 @@ public class mediun : MonoBehaviour
             NativeList<int> listPos = mesh.grid.get_nodes_grid(transform.position,width,height);
             foreach(int i in listPos){
                 if(i < mesh.grid.worldPositions.Length){
-                    if(col == null || col.OverlapPoint(mesh.grid.worldPositions[i])){
+                   if(col == null || col.OverlapPoint(mesh.grid.worldPositions[i])){
                         float2 tr = (float2)(Vector2)transform.position - mesh.grid.worldPositions[i];
                         shadow.Add(tr);
                     }
@@ -127,11 +131,21 @@ public class mediun : MonoBehaviour
             listPos.Dispose();
         }
         else{
-            foreach(float2 p in mesh.grid.worldPositions){
-                if(col == null || col.OverlapPoint(p)){
-                    float2 tr = (float2)(Vector2)transform.position - p;
-                    shadow.Add(tr);
+            if(SaveShadow){
+                foreach(float2 p in mesh.grid.worldPositions){
+                    if(col == null || col.OverlapPoint(p)){
+                        float2 tr = (float2)(Vector2)transform.position - p;
+                        shadow.Add(tr);
+                    }
                 }
+                mesh.s.mapShadowSaves[SceneManager.GetActiveScene().buildIndex] = shadow.AsArray().ToArray();
+                mesh.s.saveVals();
+                // generates and saves shadow 
+            }
+            else{
+                // pulls shadow from save
+                Debug.Log("copied");
+                shadow.CopyFrom(mesh.s.mapShadowSaves[SceneManager.GetActiveScene().buildIndex]);
             }
         }
         transform.eulerAngles = new Vector3(0,0,sav);
