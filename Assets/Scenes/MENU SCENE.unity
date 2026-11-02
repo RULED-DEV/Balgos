@@ -1154,6 +1154,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 510936546838542345, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+      propertyPath: SaveShadow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 510936546838542345, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
+      propertyPath: generateShadow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 510936546838542345, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: medium_val.spreadPerc
       value: 0.05
       objectReference: {fileID: 0}
@@ -1626,7 +1634,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4318558679791977562, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6593355803030115932, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       insertIndex: -1
