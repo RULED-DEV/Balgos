@@ -28,6 +28,7 @@ public class mesh_manager : MonoBehaviour
     public void Awake(){
         
         // settings init
+        s.initMapSavs(10);
         if(s.ManualSaveCheck) s.saveVals();
         s.loadVals();
         setSeq(s.colVals);
