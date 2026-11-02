@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Collections;
+using Unity.Mathematics;
+using UnityEngine.SceneManagement;
  
 [System.Serializable]
 public class setting_vals {
@@ -62,5 +65,14 @@ public class setting_vals {
         noCollision = s.noCollision;
 
         colVals = s.colVals;
+
+        mapShadowSaves = s.mapShadowSaves;
     }
+
+    public void initMapSavs(int size){
+        mapShadowSaves = new float2[size][];
+    }
+
+    // saves maps 
+    public float2[][] mapShadowSaves;
 }
