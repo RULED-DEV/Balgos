@@ -12,11 +12,22 @@ public class button : MonoBehaviour
 
     public bool levelTransition; // determines if we are activating a function or transitioning
 
+    public bool canHold;
+    // wether button continues to activate when held
+
+    bool held;
+
     void OnMouseOver()
     {
         if(Input.GetMouseButtonDown(0)){
+            held = true;
+        }
+    }
+
+    void Update(){
+        if(held){
             if(levelTransition){
-                Debug.Log("going to level " + ACTSTR);
+                if(!canHold) Debug.Log("going to level " + ACTSTR);
                 // Conn in this case is the gameStateManager
                 gameStateManager m = FindObjectsByType<gameStateManager>(FindObjectsSortMode.None)[0];
                 m.menuScene = ACTSTR;
@@ -25,9 +36,12 @@ public class button : MonoBehaviour
                 // here we override the menu with the string, allowing us to go to specific levels/scenes
             }
             else{
-                Debug.Log("activating function " + ACTSTR);
+                if(!canHold) Debug.Log("activating function " + ACTSTR);
                 Conn.Invoke(ACTSTR,0);
             }
+        }
+        if(Input.GetMouseButtonUp(0) || canHold == false){
+            held = false;
         }
     }
 }
