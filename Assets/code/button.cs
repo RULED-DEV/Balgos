@@ -15,7 +15,7 @@ public class button : MonoBehaviour
     public bool canHold;
     // wether button continues to activate when held
 
-    bool held;
+    public bool held;
 
     void OnMouseOver()
     {
