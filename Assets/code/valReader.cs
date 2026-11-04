@@ -25,6 +25,7 @@ public class valReader : MonoBehaviour
     void Awake(){
         cam = FindObjectsByType<Camera>(FindObjectsSortMode.None)[0];
         initPos = obj.transform.position;
+        button.transform.parent = null;
     }
 
     void updateVal(){
@@ -35,7 +36,7 @@ public class valReader : MonoBehaviour
             mousePosition = new Vector3(mousePosition.x,0,0);
             float val = Mathf.Clamp(mousePosition.x,initPos.x,initPos.x+sliderMaxDist);
             // clamps value to be within accepted range
-            obj.transform.position = new Vector3(val,obj.transform.position.y,0);
+            obj.transform.position = new Vector3(val,obj.transform.position.y,obj.transform.position.z);
 
             valOutput = Mathf.Abs(val-initPos.x) / sliderMaxDist;
             valOutput = sliderMinVal+(sliderMaxVal-sliderMinVal)*valOutput;
@@ -59,7 +60,7 @@ public class valReader : MonoBehaviour
             valOutput = inp2;
             float t = (valOutput - sliderMinVal) / (sliderMaxVal - sliderMinVal);
             float val = initPos.x + t * sliderMaxDist;
-            obj.transform.position = new Vector3(val,obj.transform.position.y,0);
+            obj.transform.position = new Vector3(val,obj.transform.position.y,obj.transform.position.z);
         }
         else{
             if(inp1){
