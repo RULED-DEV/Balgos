@@ -25,7 +25,7 @@ public class texter : MonoBehaviour
         sizing = FindObjectsByType<mesh_manager>(FindObjectsSortMode.None)[0].s.resolution;
         sizing = 1/sizing;
         Vector2 pos = transform.position;
-        pos = new Vector2(pos.x - (pos.x%unit), pos.y - (pos.y%unit));
+        pos = new Vector2(pos.x - (pos.x%unit)+(unit/2), pos.y - (pos.y%unit)+(unit/2));
         transform.position = pos;
         TextGeneration();
     }
@@ -38,7 +38,7 @@ public class texter : MonoBehaviour
     public void TextGeneration(){
         for(int i = 0; i < text.Length; i++){
             if(text[i] != ' '){
-                Vector2 pos = transform.position + new Vector3(unit/2,unit,0);
+                Vector2 pos = transform.position + new Vector3(0,unit/2,0);
 
                 Vector2 offset = new Vector2(((3*unit) + (spacing*unit))*i,0);
 
