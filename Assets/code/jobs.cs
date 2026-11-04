@@ -270,12 +270,13 @@ public struct spreadJob : IJobParallelFor
                 // standard spread value, each spread decays by the decay amount multiplied by spread percentage
 
                 if(NodeArr[nodeIND].spreadExclusive != NodeArr[neighborIndex].spreadExclusive){
-                    decVAL = NodeArr[nodeIND].decibels-(NodeArr[nodeIND].decay*NodeArr[nodeIND].spreadExclusive);
+                    decVAL = NodeArr[nodeIND].decibels*NodeArr[nodeIND].spreadExclusive;
                     // when going between mediums we use the exclusive spread value
                     // its exclusive because only a few mediums will make use of it
                 }                
-
-                writer.Write(new NodeUpdate {index = neighborIndex, value = decVAL});
+                if(decVAL > NodeArr[neighborIndex].decibels){
+                    writer.Write(new NodeUpdate {index = neighborIndex, value = decVAL});
+                }
             }
         }
         if(spread > 0){
