@@ -27,21 +27,7 @@ public class mesh_manager : MonoBehaviour
 
     public void Awake(){
         
-        // settings init
-        s.initMapSavs(16);
-        if(s.ManualSaveCheck) s.saveVals();
-        s.loadVals();
-        setSeq(s.colVals);
-        Application.targetFrameRate = s.frameRate;
-        if(s.cursorInLevel && FindObjectsByType<mesh_manager>(FindObjectsSortMode.None).Length == 0){
-            // spawn cursor
-            Instantiate(cursPrefab);
-        }
-        
-        Cursor.visible = s.seeCursor;
-        // sets cursor to be on/off depending on seeCursor
-
-        // loads setting data
+        refreshSettings();
 
         if(s != null){
             soundColors = new NativeArray<Color32>(Mathf.RoundToInt((s.width/s.resolution)*(s.height/s.resolution)), Allocator.Persistent);
@@ -58,6 +44,25 @@ public class mesh_manager : MonoBehaviour
             Invoke("Awake",0);
         }
         
+    }
+
+    public void refreshSettings(){
+        // settings init
+        s.initMapSavs(16);
+        if(s.ManualSaveCheck) s.saveVals();
+        s.loadVals();
+        setSeq(s.colVals);
+        Application.targetFrameRate = s.frameRate;
+        if(s.cursorInLevel && FindObjectsByType<mesh_manager>(FindObjectsSortMode.None).Length == 0){
+            // spawn cursor
+            Instantiate(cursPrefab);
+        }
+        
+        Cursor.visible = s.seeCursor;
+        
+        // sets cursor to be on/off depending on seeCursor
+
+        // loads setting data
     }
 
     public void FixedUpdate(){
