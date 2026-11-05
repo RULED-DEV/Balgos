@@ -54,7 +54,7 @@ public class valReader : MonoBehaviour
         }
     }
 
-    void setVal(bool inp1, float inp2){
+    public void setVal(bool inp1, float inp2){
         // used to set val and obj state/position
         if(isSlider){
             valOutput = inp2;
