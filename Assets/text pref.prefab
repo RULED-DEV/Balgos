@@ -76,7 +76,7 @@ MonoBehaviour:
   - {fileID: -1066651407, guid: ae2848f7f6e6405419d3d1f08f6c6a46, type: 3}
   MV:
     decibels: 0
-    decay: 1
+    decay: -0.01
     spreadRate: 1
     spreadPerc: 1
     spreadExclusive: 0.5
