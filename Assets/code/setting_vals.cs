@@ -27,7 +27,7 @@ public class setting_vals {
     public bool seeCursor; // do you want to see the cursor
     public bool AudioEffectsSimulation; // does the Aud variables effect the noise written to the grid
 
-    public bool enemiesCanAggro; // wether enemies will attack player
+    public bool enemiesCannotAggro; // wether enemies will attack player
 
     public bool cannotDie; // is player invinsible
     public bool infiniteAmmo; // does weapon need to reload
