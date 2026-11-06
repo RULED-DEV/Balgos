@@ -79,7 +79,7 @@ MonoBehaviour:
     decay: -0.01
     spreadRate: 1
     spreadPerc: 1
-    spreadExclusive: 0.5
+    spreadExclusive: 0
   textList: []
   size: 1
   spacing: 1

@@ -618,7 +618,7 @@ MonoBehaviour:
     cursorInLevel: 0
     seeCursor: 0
     AudioEffectsSimulation: 0
-    enemiesCanAggro: 0
+    enemiesCannotAggro: 0
     cannotDie: 0
     infiniteAmmo: 0
     noCollision: 0
@@ -972,7 +972,7 @@ MonoBehaviour:
   levelScenes:
   - level 2
   - level 3
-  - level 4
+  - level 2
   - level 5
   - level 6
   - level 7

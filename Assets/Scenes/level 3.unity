@@ -815,6 +815,7 @@ MonoBehaviour:
     spreadExclusive: 0.5
   width: -1
   height: -1
+  SaveShadow: 0
 --- !u!1 &732592686072231934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,7 +1667,7 @@ MonoBehaviour:
     cursorInLevel: 0
     seeCursor: 0
     AudioEffectsSimulation: 0
-    enemiesCanAggro: 0
+    enemiesCannotAggro: 0
     cannotDie: 0
     infiniteAmmo: 0
     noCollision: 0

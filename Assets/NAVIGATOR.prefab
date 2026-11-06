@@ -244,6 +244,7 @@ MonoBehaviour:
     spreadExclusive: 0.5
   width: 5
   height: 5
+  SaveShadow: 0
 --- !u!114 &6402833913435605408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   volume: 10
   spread: 0.5
   continuity: 0
@@ -510,6 +512,7 @@ MonoBehaviour:
     spreadExclusive: 0.5
   width: 5
   height: 5
+  SaveShadow: 0
 --- !u!114 &3540916664626871133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,6 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   volume: 10
   spread: 0.5
   continuity: 0
@@ -585,6 +589,7 @@ MonoBehaviour:
   moveSpeed: 3
   attackMult: 1.8
   fearMult: 5
+  nodeDist: 20
   attackRad: 10
   mode: aaa
   mask:
@@ -647,7 +652,7 @@ MonoBehaviour:
   ACTSTR: FEAR
   Conn: {fileID: 5020634072088368155}
   interval: 0.05
-  threshold: 91
+  threshold: 100
   activated: 0
 --- !u!50 &944262903069216896
 Rigidbody2D:
@@ -920,6 +925,7 @@ MonoBehaviour:
     spreadExclusive: 0.5
   width: 5
   height: 5
+  SaveShadow: 0
 --- !u!114 &2737237858169042946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,6 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   volume: 10
   spread: 0.5
   continuity: 0
@@ -1223,7 +1230,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refresh_timer: 0.02
-  spite: 1
 --- !u!114 &681462095797110330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,6 +1250,7 @@ MonoBehaviour:
     spreadExclusive: 0.5
   width: 5
   height: 5
+  SaveShadow: 0
 --- !u!82 &8502847189952167238
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1584,6 +1591,7 @@ MonoBehaviour:
     spreadExclusive: 0.5
   width: 5
   height: 5
+  SaveShadow: 0
 --- !u!114 &8503142999161971855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1596,6 +1604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   volume: 10
   spread: 0.5
   continuity: 0
@@ -1860,6 +1869,7 @@ MonoBehaviour:
     spreadExclusive: 0.5
   width: 5
   height: 5
+  SaveShadow: 0
 --- !u!114 &2388423017639540963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1872,6 +1882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   volume: 50
   spread: 0
   continuity: 0
@@ -1892,6 +1903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   volume: 90
   spread: 0
   continuity: 0
@@ -1912,6 +1924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271a8e6d3ca1c9f41aad909bc6799177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   volume: 65
   spread: 0.3
   continuity: 0

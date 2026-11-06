@@ -3252,6 +3252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ambient aud text
       objectReference: {fileID: 0}
+    - target: {fileID: 839968500420277686, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2948699502993121021, guid: 0f7aa3886e715304f802d3433d95d593, type: 3}
       propertyPath: size
       value: 1
@@ -11807,7 +11811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 510936546838542345, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: SaveShadow
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 510936546838542345, guid: 9d3cff9c6281aa24a824501f5092f96f, type: 3}
       propertyPath: generateShadow

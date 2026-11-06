@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6e39b612fae764295229d840c83a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clNoise: {fileID: 8300000, guid: 1781c297fc09a1648b25b77d47f54912, type: 3}
   clickNoise: 110
   idleNoise: 20
   moveNoise: 80
@@ -59,7 +60,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 73b97bb61c676dc4eade54fe3ff86872, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
