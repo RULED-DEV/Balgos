@@ -116,8 +116,6 @@ public class mediun : MonoBehaviour
     }
 
     public void createShadow(){
-        float sav = transform.eulerAngles.z;
-        transform.eulerAngles = Vector3.zero;
         if(width > 0){
             NativeList<int> listPos = mesh.grid.get_nodes_grid(transform.position,width,height);
             foreach(int i in listPos){
@@ -131,24 +129,30 @@ public class mediun : MonoBehaviour
             listPos.Dispose();
         }
         else{
-            if(SaveShadow){
+            // saveshadow doesnt save us any load time and as such is removed
+            //if(SaveShadow){
                 foreach(float2 p in mesh.grid.worldPositions){
                     if(col == null || col.OverlapPoint(p)){
                         float2 tr = (float2)(Vector2)transform.position - p;
                         shadow.Add(tr);
                     }
                 }
-                mesh.s.mapShadowSaves[SceneManager.GetActiveScene().buildIndex] = shadow.AsArray().ToArray();
-                mesh.s.saveVals();
+                //mesh.s.mapShadowSaves[SceneManager.GetActiveScene().buildIndex] = shadow.AsArray().ToArray();
+                //mesh.s.saveVals();
                 // generates and saves shadow 
-            }
-            else{
-                // pulls shadow from save
-                Debug.Log("copied");
-                shadow.CopyFrom(mesh.s.mapShadowSaves[SceneManager.GetActiveScene().buildIndex]);
-            }
+            //}
+            // else{
+            //     // pulls shadow from save
+            //     if(mesh.s.mapShadowSaves[SceneManager.GetActiveScene().buildIndex].Length > 0){
+            //         shadow.CopyFrom(mesh.s.mapShadowSaves[SceneManager.GetActiveScene().buildIndex]);
+            //         Debug.Log("copied");
+            //     }
+            //     else{
+            //         SaveShadow = true;
+            //         createShadow();
+            //     }
+            // }
         }
-        transform.eulerAngles = new Vector3(0,0,sav);
         // ensures the object orients to 0 degrees before shadow is taken
     }
 
