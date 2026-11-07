@@ -207,12 +207,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1.4
+    decay: 0.5
     spreadRate: 1.1
     spreadPerc: 0.5
     spreadExclusive: 1
   width: 2
   height: 3
+  SaveShadow: 0
 --- !u!1 &406953133268851739
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +318,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 384
-  speed: 4
+  speed: 6
   rotSPEED: 4
   reloadDist: 7.2
   trail_noise: 120
@@ -614,12 +615,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1.4
+    decay: 0.5
     spreadRate: 1.1
     spreadPerc: 0.5
     spreadExclusive: 1
   width: 2
   height: 3
+  SaveShadow: 0
 --- !u!1 &4868983961669997874
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,12 +749,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1.4
+    decay: 0.5
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 1
   width: 2
   height: 3
+  SaveShadow: 0
 --- !u!1 &5350554699954386495
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +808,7 @@ MonoBehaviour:
   T: 0
   SFX: {fileID: 200189318091201274}
   sounds:
-  - {fileID: 8300000, guid: e68b6518568f46d47811352d345a0bbd, type: 3}
+  - {fileID: 8300000, guid: d7be12478549dec44a00c8a5a2140c60, type: 3}
 --- !u!1 &6414585920530231196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,12 +1242,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1.4
+    decay: 0.5
     spreadRate: 1.1
     spreadPerc: 0.5
     spreadExclusive: 1
   width: 2
   height: 3
+  SaveShadow: 0
 --- !u!1 &7970454897540299022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,12 +1418,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1.4
+    decay: 0.5
     spreadRate: 1.1
     spreadPerc: 0.5
     spreadExclusive: 1
   width: 2
   height: 3
+  SaveShadow: 0
 --- !u!1 &8273206509576801275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,7 +1479,7 @@ MonoBehaviour:
   T: 0
   SFX: {fileID: 200189318091201274}
   sounds:
-  - {fileID: 8300000, guid: 68c8e475e71b2fa4ab69afef45e85148, type: 3}
+  - {fileID: 8300000, guid: 95b9978977445e542b5c7cb5889f5227, type: 3}
 --- !u!60 &6654807598986201278
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1542,12 +1547,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1.4
+    decay: 0.5
     spreadRate: 1.1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 1
   width: 2
   height: 3
+  SaveShadow: 0
 --- !u!1 &8281553495581154116
 GameObject:
   m_ObjectHideFlags: 0
