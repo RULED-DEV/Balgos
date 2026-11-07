@@ -238,10 +238,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1
+    decay: 0.5
     spreadRate: 1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 1
   width: 5
   height: 5
   SaveShadow: 0
@@ -506,10 +506,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1
+    decay: 0.5
     spreadRate: 1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 1
   width: 5
   height: 5
   SaveShadow: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 2
-  moveSpeed: 3
+  moveSpeed: 4.5
   attackMult: 1.8
   fearMult: 5
   nodeDist: 20
@@ -635,7 +635,7 @@ MonoBehaviour:
   ACTSTR: DETECTNOISE
   Conn: {fileID: 5020634072088368155}
   interval: 0.05
-  threshold: 20
+  threshold: 35
   activated: 0
 --- !u!114 &6761063199468290819
 MonoBehaviour:
@@ -652,7 +652,7 @@ MonoBehaviour:
   ACTSTR: FEAR
   Conn: {fileID: 5020634072088368155}
   interval: 0.05
-  threshold: 100
+  threshold: 110
   activated: 0
 --- !u!50 &944262903069216896
 Rigidbody2D:
@@ -919,10 +919,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1
+    decay: 0.5
     spreadRate: 1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 1
   width: 5
   height: 5
   SaveShadow: 0
@@ -1244,10 +1244,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1
+    decay: 0.5
     spreadRate: 1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 1
   width: 5
   height: 5
   SaveShadow: 0
@@ -1585,10 +1585,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medium_val:
     decibels: 0
-    decay: 1
+    decay: 0.5
     spreadRate: 1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 1
   width: 5
   height: 5
   SaveShadow: 0
@@ -1866,7 +1866,7 @@ MonoBehaviour:
     decay: 0.5
     spreadRate: 1
     spreadPerc: 0.5
-    spreadExclusive: 0.5
+    spreadExclusive: 1
   width: 5
   height: 5
   SaveShadow: 0
